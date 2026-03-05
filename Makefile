@@ -1,10 +1,10 @@
 CXX = g++
 CXXFLAGS = -std=c++11 -Wall -Wextra
 
-all: test_syntaxtree.out
+all: JRPG_tests.out
 
-test_syntaxtree.out: test_syntaxtree.cpp SyntaxTree.cpp SyntaxTree.h
-	$(CXX) $(CXXFLAGS) test_syntaxtree.cpp SyntaxTree.cpp -o test_syntaxtree.out
+JRPG_tests.out: JRPG_tests.cpp JRPG.cpp JRPG.h
+	$(CXX) $(CXXFLAGS) JRPG_tests.cpp JRPG.cpp -o JRPG_tests.out
 
 clean:
 	rm -f *.out
