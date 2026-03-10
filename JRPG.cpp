@@ -20,15 +20,19 @@ using namespace std;
 class CreatureClass {
     // Has all values that both player and enemy share
     protected: 
-        int health;
         string name;
+        int health;
         string wepon;
         map<string, int> moves;
 
     public:
         // Putting the chosen values to be kept
-        CreatureClass(int hp, string charN, string wep, map<string, int> mov) 
-        : health(hp), name(charN), wepon(wep), moves(mov) {};
+        CreatureClass(string charN, int hp, string wep, map<string, int> mov) 
+        : name(charN), health(hp), wepon(wep), moves(mov) {};
+
+    void setName(const string& newName) {
+        name = newName;
+    }
 
     void TakeDamage(int damage) {
         // Adds damage to the the player or enemy
@@ -36,17 +40,18 @@ class CreatureClass {
         if (health < 0) {
             health = 0;
         }
-        cout << name << " takes " << damage << "damage!" << "Current HP: " << health << "\n \n";
+        // cout << name << " takes " << damage << "damage! \n \n";
     }
 
     void AddHealing(int healing) {
         // Adds damage to the the player or enemy
         health += healing;
-        if (health > 20) { // Hard coded for now
-            health = 20;
+        if (health > 100) { // Hard coded for now
+            health = 100;
         }
-        cout << name << " takes " << healing << "damage!" << "Current HP: " << health << '\n';
+        // cout << name << " takes " << healing << "healing! \n";
     }
+
 
     // Simple returns, name, health and status
     bool isAlive() const {return health > 0;}
@@ -61,7 +66,7 @@ class CharacterClass : public CreatureClass {
     public:
     // Assigning the player character set values
     CharacterClass() 
-        : CreatureClass(20, "Hero", "Sword",{{"Power move", 6}, {"Heal", -5}, {"Slash", 5}, {"Defend", 0}}) {};
+        : CreatureClass("Slayer of demons!", 100, "Sword",{{"Power move", 6}, {"Heal", -5}, {"Slash", 5}, {"Defend", 0}}) {};
 
 };
 
@@ -72,8 +77,7 @@ class EnemyClass : public CreatureClass {
     public:
     // Assigning the enemy set values
     EnemyClass() 
-        : CreatureClass(17, "Bad guy!", "Club",{{"Clunk", 4}, {"Special!", 8}}) {};
-
+        : CreatureClass("Bad guy!", 100, "Club",{{"Clunk", 4}, {"Special!", 8}}) {};
 };
 
 class BattleCycleClass {
@@ -82,18 +86,102 @@ class BattleCycleClass {
         void cycle (CreatureClass& player, CreatureClass & enemy){
             cout << "Battle with " << enemy.getName() << "! \n";
             while (player.getHealth() > 0 && enemy.getHealth() > 0) {
-                cout << "---STATS---: \n";
-                cout << player.getName() << ": (HP:" << player.getHealth() << ") \n";
-                cout << enemy.getName() << ": (HP" << enemy.getHealth() << ") \n \n";
-                player.TakeDamage(5);
-            }
-            if (player.getHealth() == 0) {
-                cout << "You died \n";
-            }
-            else if (enemy.getHealth() == 0){
-                cout << "You win! \n";
-            }
+
+                enemyPicture();
+                healthStatus(player, enemy);
+
+                    string userChoice;
+                    cout << "What would you like to do? \n";
+                    cout << "- 1. Heal \n";
+                    cout << "- 2. Attack \n";
+                    cout << "- 3. Special \n \n";
+
+                    getline(cin, userChoice);
+
+                    if (userChoice == "heal" || userChoice == "1") {
+                        player.AddHealing(40);
+                    }
+                    else if (userChoice == "attack" || userChoice == "2"){
+                        enemy.TakeDamage(20);
+                    }
+                    else if (userChoice == "special" || userChoice == "3") {
+                        enemy.TakeDamage(30);
+                    }
+                    
+                player.TakeDamage(20);
         }
+
+    if (enemy.getHealth() == 0) {
+        cout << "You win! \n";
+    }
+    else if (player.getHealth() == 0){
+        cout << "You died \n";
+    }
+}
+
+    void healthStatus(CreatureClass& player, CreatureClass & enemy) {
+
+            cout << "-------------------------------------------------- | STATS | ------------------------------------------------------------\n";
+
+            cout << "🔶 " << enemy.getName() << ": (HP: " ;
+            for (int i = 0; i < (enemy.getHealth() / 10); i++) {
+                if (enemy.getHealth() > 50) {
+                    cout << "🟩";
+                }
+                else if (enemy.getHealth() > 25) {
+                    cout << "🟨";
+                }
+                else {
+                    cout << "🟥";
+                }
+            }
+            int grayAmountE;
+            grayAmountE = 10 - (enemy.getHealth() / 10);
+            for (int i = 0; i < grayAmountE; i++) {
+                cout << "⬛";
+            }
+
+            cout << ")                      "; 
+            cout << "🔷 " << player.getName() << ": (HP: " ;
+            for (int i = 0; i < (player.getHealth() / 10); i++) {
+                if (player.getHealth() > 50) {
+                    cout << "🟩";
+                }
+                else if (player.getHealth() > 25) {
+                    cout << "🟨";
+                }
+                else {
+                    cout << "🟥";
+                }
+            }
+            int grayAmountP;
+            grayAmountP = 10 - (player.getHealth() / 10);
+            for (int i = 0; i < grayAmountP; i++) {
+                cout << "⬛";
+            }
+            cout << ")\n";
+        cout << "-------------------------------------------------------------------------------------------------------------------------\n";
+    }
+
+    void enemyPicture() {
+        ifstream file1("boss3.txt");
+        ifstream file2("protag.txt");
+
+        string boss;
+        string protag;
+
+        if (file1.is_open() && file2.is_open()) {
+            while (getline(file1, boss) && getline(file2, protag)) {
+                cout << boss << "           " << protag << endl;
+            }
+
+            file1.close();
+            file2.close();
+        } 
+        else {
+            cerr << "Error with file opening" << endl;
+        }
+    }
 };
 
 class GameManagerClass {
@@ -101,16 +189,39 @@ class GameManagerClass {
     CharacterClass player;
     EnemyClass enemy;
 
-
-    // EnemyClass.position = 0;
-    // CharacterClass.position = 0;
     public: 
         void run() {
-            //
-            cout << "Welcome traveler! \n \n" ;
+            // Runs the game
+            addTitleScreen();
+            cout << "\nWelcome traveler! \n";
+            cout << "Please enter your name: ";
+            string name;
+            getline(cin, name);
+            if (name != "") {
+                player.setName(name);
+                cout << "\n";
+            }
+
             BattleCycleClass BCC;
             BCC.cycle(player, enemy);
         }
+
+    void addTitleScreen() {
+        ifstream file("titlescreen.txt");
+
+        string title;
+
+        if (file.is_open() ) {
+            while (getline(file, title)) {
+                cout << title << endl;
+            }
+
+            file.close();
+        } 
+        else {
+            cerr << "Error with file opening" << endl;
+        }
+    }
 };
 
 int main() {
