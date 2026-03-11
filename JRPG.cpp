@@ -15,6 +15,7 @@
 #include <string>
 #include <bits/stdc++.h>
 #include <cctype>
+#include <fstream>
 
 using namespace std;
 
@@ -65,12 +66,30 @@ class CreatureClass {
 class CharacterClass : public CreatureClass {
     // Player character stats!
     int position;
+    int specialUses;
     
     public:
     // Assigning the player character set values
     CharacterClass() 
-        : CreatureClass("Some Mediocre Students", 100, "Sword",{{"Power move", 6}, {"Heal", -5}, {"Slash", 5}, {"Defend", 0}}) {};
+    : CreatureClass("Some Mediocre Students", 100, "Sword", {{"Power move", 6}, {"Heal", -5}, {"Slash", 5}, {"Defend", 0}}),
+        specialUses(3)
+        {}
 
+    bool canUseSpecial() const {
+        return specialUses > 0;
+    }
+
+    void useSpecial(CreatureClass& enemy) {
+        if (specialUses > 0) {
+            enemy.TakeDamage(30); // special damage
+            specialUses--;
+            cout << "Caffeine Crashout used! " << specialUses << " drinks remaining.\n";
+        } else {
+            cout << "No caffeinated drinks left!\n";
+        }
+    }
+
+    void resetSpecials() { specialUses = 3; }
 };
 
 class EnemyClass : public CreatureClass {
@@ -86,7 +105,7 @@ class EnemyClass : public CreatureClass {
 class BattleCycleClass {
     // Keeps cycle going until either playr dies or enemy dies
     public:
-        void cycle (CreatureClass& player, CreatureClass & enemy, int enemyIdx){
+        void cycle (CharacterClass& player, CreatureClass & enemy, int enemyIdx){
             
             while (player.getHealth() > 0 && enemy.getHealth() > 0) {
                 system("clear");
@@ -98,7 +117,7 @@ class BattleCycleClass {
                     cout << "What would you like to do? \n";
                     cout << "- 1. Heal \n";
                     cout << "- 2. Attack \n";
-                    cout << "- 3. Special \n \n";
+                    cout << "- 3. Caffeine Crashout \n \n";
 
                     getline(cin, userChoice);
                     string setChoice = "";
@@ -120,8 +139,13 @@ class BattleCycleClass {
                     else if (setChoice == "attack" || userChoice == "2"){
                         enemy.TakeDamage(20);
                     }
-                    else if (setChoice == "special" || userChoice == "3") {
-                        enemy.TakeDamage(30);
+                    else if (setChoice == "special" || userChoice == "3"|| userChoice == "caffeinecrashout") {
+                        if (player.canUseSpecial()) {
+                            player.useSpecial(enemy);
+                        } else {
+                            cout << "You can't use Special right now! Defaulting to Attack.\n";
+                            enemy.TakeDamage(20);
+                        }
                     }
                     else {
                         enemy.TakeDamage(20);
