@@ -14,8 +14,11 @@
 #include <iostream>
 #include <string>
 #include <bits/stdc++.h>
+#include <cctype>
 
 using namespace std;
+
+bool PLAYERDEAD = false;
 
 class CreatureClass {
     // Has all values that both player and enemy share
@@ -66,7 +69,7 @@ class CharacterClass : public CreatureClass {
     public:
     // Assigning the player character set values
     CharacterClass() 
-        : CreatureClass("Slayer of demons!", 100, "Sword",{{"Power move", 6}, {"Heal", -5}, {"Slash", 5}, {"Defend", 0}}) {};
+        : CreatureClass("Some Mediocre Students", 100, "Sword",{{"Power move", 6}, {"Heal", -5}, {"Slash", 5}, {"Defend", 0}}) {};
 
 };
 
@@ -76,18 +79,19 @@ class EnemyClass : public CreatureClass {
 
     public:
     // Assigning the enemy set values
-    EnemyClass() 
-        : CreatureClass("Bad guy!", 100, "Club",{{"Clunk", 4}, {"Special!", 8}}) {};
+        EnemyClass(string charN, int hp, string wep, map<string, int> mov) 
+            : CreatureClass(charN, hp, wep, mov) {};
 };
 
 class BattleCycleClass {
     // Keeps cycle going until either playr dies or enemy dies
     public:
-        void cycle (CreatureClass& player, CreatureClass & enemy){
-            cout << "Battle with " << enemy.getName() << "! \n";
+        void cycle (CreatureClass& player, CreatureClass & enemy, int enemyIdx){
+            
             while (player.getHealth() > 0 && enemy.getHealth() > 0) {
-
-                enemyPicture();
+                system("clear");
+                cout << "Battle with " << enemy.getName() << "! \n";
+                enemyPicture(enemyIdx);
                 healthStatus(player, enemy);
 
                     string userChoice;
@@ -97,31 +101,47 @@ class BattleCycleClass {
                     cout << "- 3. Special \n \n";
 
                     getline(cin, userChoice);
+                    string setChoice = "";
 
-                    if (userChoice == "heal" || userChoice == "1") {
+                    
+                    for (size_t  i = 0; i < userChoice.size(); i++) {
+                        if (!isdigit(userChoice[i])) {   // ✅ check each character individually
+                            setChoice += tolower(userChoice[i]);
+                        }
+                    }
+
+                    // Trim any spaces from setChoice
+                    setChoice.erase(remove(setChoice.begin(), setChoice.end(), ' '), setChoice.end());
+
+
+                    if (setChoice == "heal" || userChoice == "1") {
                         player.AddHealing(40);
                     }
-                    else if (userChoice == "attack" || userChoice == "2"){
+                    else if (setChoice == "attack" || userChoice == "2"){
                         enemy.TakeDamage(20);
                     }
-                    else if (userChoice == "special" || userChoice == "3") {
+                    else if (setChoice == "special" || userChoice == "3") {
                         enemy.TakeDamage(30);
                     }
-                    
-                player.TakeDamage(20);
+                    else {
+                        enemy.TakeDamage(20);
+                    }
+                player.TakeDamage(10);
         }
 
     if (enemy.getHealth() == 0) {
+        player.AddHealing(100);
         cout << "You win! \n";
     }
     else if (player.getHealth() == 0){
+        PLAYERDEAD = true;
         cout << "You died \n";
     }
 }
 
     void healthStatus(CreatureClass& player, CreatureClass & enemy) {
 
-            cout << "-------------------------------------------------- | STATS | ------------------------------------------------------------\n";
+            cout << "\n-------------------------------------------------- | STATS | ------------------------------------------------------------\n";
 
             cout << "🔶 " << enemy.getName() << ": (HP: " ;
             for (int i = 0; i < (enemy.getHealth() / 10); i++) {
@@ -141,7 +161,7 @@ class BattleCycleClass {
                 cout << "⬛";
             }
 
-            cout << ")                      "; 
+            cout << ")                        "; 
             cout << "🔷 " << player.getName() << ": (HP: " ;
             for (int i = 0; i < (player.getHealth() / 10); i++) {
                 if (player.getHealth() > 50) {
@@ -160,11 +180,11 @@ class BattleCycleClass {
                 cout << "⬛";
             }
             cout << ")\n";
-        cout << "-------------------------------------------------------------------------------------------------------------------------\n";
+        cout << "-------------------------------------------------------------------------------------------------------------------------\n \n";
     }
 
-    void enemyPicture() {
-        ifstream file1("boss3.txt");
+    void enemyPicture(int enemyIdx) {
+        ifstream file1("boss"+ to_string(enemyIdx) +".txt");
         ifstream file2("protag.txt");
 
         string boss;
@@ -187,24 +207,70 @@ class BattleCycleClass {
 class GameManagerClass {
     // Keeps track of the possition in game
     CharacterClass player;
-    EnemyClass enemy;
+    vector<EnemyClass> enemies;
+    int currentEnemy = -1;
 
     public: 
+        GameManagerClass() {
+            enemies.push_back(EnemyClass("TEITUR", 100, "Club",{{"Clunk", 4}, {"Special!", 8}}));
+            enemies.push_back(EnemyClass("KONRÁÐ", 100, "Club",{{"Clunk", 4}, {"Special!", 8}}));
+            enemies.push_back(EnemyClass("ATLI", 100, "Club",{{"Clunk", 4}, {"Special!", 8}}));
+        }
+
+        void nextEnemy() {
+            currentEnemy++;
+        }
+
+        int currEnemy() {
+            return currentEnemy;
+        }
+
         void run() {
             // Runs the game
+            system("clear");
             addTitleScreen();
-            cout << "\nWelcome traveler! \n";
-            cout << "Please enter your name: ";
-            string name;
-            getline(cin, name);
-            if (name != "") {
-                player.setName(name);
-                cout << "\n";
+
+            cout << "\nWelcome traveler! \n \n";
+
+            cout << "Press enter to continue: ";
+            cin.ignore(); 
+
+            // cout << "Please enter your name: ";
+            // string name;
+            // getline(cin, name);
+            // if (name != "") {
+            //     player.setName(name);
+            //     cout << "\n";
+            // }
+
+            system("clear");
+            addStorySetting();
+
+            cout << "\nPress enter to continue: ";
+            cin.ignore(); 
+            while (!PLAYERDEAD && currentEnemy < (int)enemies.size()-1) {
+                nextEnemy();
+                BattleCycleClass BCC;
+                BCC.cycle(player, enemies[currentEnemy], currentEnemy);
+            }
+        }
+    
+    void addStorySetting() {
+        ifstream file("storySetting.txt");
+
+        string story;
+
+        if (file.is_open() ) {
+            while (getline(file, story)) {
+                cout << story << endl;
             }
 
-            BattleCycleClass BCC;
-            BCC.cycle(player, enemy);
+            file.close();
+        } 
+        else {
+            cerr << "Error with file opening" << endl;
         }
+    }
 
     void addTitleScreen() {
         ifstream file("titlescreen.txt");
