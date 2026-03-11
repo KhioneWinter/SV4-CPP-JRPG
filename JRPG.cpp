@@ -90,7 +90,7 @@ class BattleCycleClass {
             
             while (player.getHealth() > 0 && enemy.getHealth() > 0) {
                 system("clear");
-                cout << "Battle with " << enemy.getName() << "! \n";
+                cout << "Battle with " << enemy.getName() << "! \n \n";
                 enemyPicture(enemyIdx);
                 healthStatus(player, enemy);
 
@@ -212,9 +212,9 @@ class GameManagerClass {
 
     public: 
         GameManagerClass() {
-            enemies.push_back(EnemyClass("TEITUR", 100, "Club",{{"Clunk", 4}, {"Special!", 8}}));
-            enemies.push_back(EnemyClass("KONRÁÐ", 100, "Club",{{"Clunk", 4}, {"Special!", 8}}));
-            enemies.push_back(EnemyClass("ATLI", 100, "Club",{{"Clunk", 4}, {"Special!", 8}}));
+            enemies.push_back(EnemyClass("TEITUR", 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
+            enemies.push_back(EnemyClass("KONRÁÐ", 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
+            enemies.push_back(EnemyClass("ATLI", 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
         }
 
         void nextEnemy() {
@@ -228,12 +228,10 @@ class GameManagerClass {
         void run() {
             // Runs the game
             system("clear");
-            addTitleScreen();
+            // addTitleScreen();
 
-            cout << "\nWelcome traveler! \n \n";
-
-            cout << "Press enter to continue: ";
-            cin.ignore(); 
+            // cout << "\nPress enter to continue: ";
+            // cin.ignore(); 
 
             // cout << "Please enter your name: ";
             // string name;
@@ -243,11 +241,12 @@ class GameManagerClass {
             //     cout << "\n";
             // }
 
-            system("clear");
-            addStorySetting();
+            // system("clear");
+            // addStorySetting();
 
-            cout << "\nPress enter to continue: ";
-            cin.ignore(); 
+            // cout << "\nPress enter to continue: ";
+            // cin.ignore(); 
+
             while (!PLAYERDEAD && currentEnemy < (int)enemies.size()-1) {
                 nextEnemy();
                 BattleCycleClass BCC;
