@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 
-extern bool PLAYERDEAD;  // ✅ reference the global, don't redefine it
+extern bool PLAYERDEAD;  
 
 class GameManagerClass {
     CharacterClass player;

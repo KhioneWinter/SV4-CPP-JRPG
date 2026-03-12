@@ -1,9 +1,9 @@
 #include "GameManager.hpp"
 
 GameManagerClass::GameManagerClass() {
-    enemies.push_back(EnemyClass("TEITUR", 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
-    enemies.push_back(EnemyClass("KONRÁÐ", 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
-    enemies.push_back(EnemyClass("ATLI", 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
+    enemies.push_back(EnemyClass("TEITUR", 100, 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
+    enemies.push_back(EnemyClass("KONRÁÐ", 100, 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
+    enemies.push_back(EnemyClass("ATLI", 100, 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
 }
 
 void GameManagerClass::nextEnemy() {
@@ -43,7 +43,7 @@ void GameManagerClass::run() {
 }
 
 void GameManagerClass::addStoryElement(string filename) {
-    ifstream file(filename);
+    ifstream file("txt-files/"+filename);
 
     string element;
 

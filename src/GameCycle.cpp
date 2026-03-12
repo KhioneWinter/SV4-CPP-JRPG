@@ -45,7 +45,8 @@
                     }
                 }
                 else if (setChoice == "defend" || userChoice == "4") {
-                    player.defend();
+                    player.defend(player, 30);
+                }
                 else {
                     enemy.TakeDamage(20);
                 }
@@ -107,8 +108,8 @@ void BattleCycleClass::healthStatus(CreatureClass& player, CreatureClass & enemy
 }
 
 void BattleCycleClass::enemyPicture(int enemyIdx) {
-    ifstream file1("boss"+ to_string(enemyIdx) +".txt");
-    ifstream file2("protag.txt");
+    ifstream file1("txt-files/boss"+ to_string(enemyIdx) +".txt");
+    ifstream file2("txt-files/protag.txt");
 
     string boss;
     string protag;

@@ -15,7 +15,7 @@ class CreatureClass {
         string wepon;
         map<string, int> moves;
     public: 
-        CreatureClass(string charN, int hp, string wep, map<string, int> mov);
+        CreatureClass(string charN, int hp, int maxhp, string wep, map<string, int> mov);
         void TakeDamage(int amount);
         void AddHealing(int healing);
         void setName(const string& newName);
