@@ -14,7 +14,7 @@
                 cout << "- 1. Heal \n";
                 cout << "- 2. Attack \n";
                 cout << "- 3. Caffeine Crashout \n";
-                cout << "- 4. Defend  \n \n"
+                cout << "- 4. Defend  \n \n";
 
                 getline(cin, userChoice);
                 string setChoice = "";
