@@ -19,8 +19,8 @@ CreatureClass::CreatureClass(string charN, int hp, string wep, map<string, int> 
     void CreatureClass::AddHealing(int healing) {
         // Adds damage to the the player or enemy
         health += healing;
-        if (health > 100) { // Hard coded for now
-            health = 100;
+        if (health > maxhealth) {
+            health = maxhealth;
         }
         // cout << name << " takes " << healing << "healing! \n";
     }

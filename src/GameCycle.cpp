@@ -13,7 +13,8 @@
                 cout << "What would you like to do? \n";
                 cout << "- 1. Heal \n";
                 cout << "- 2. Attack \n";
-                cout << "- 3. Caffeine Crashout \n \n";
+                cout << "- 3. Caffeine Crashout \n";
+                cout << "- 4. Defend  \n \n"
 
                 getline(cin, userChoice);
                 string setChoice = "";
@@ -39,24 +40,26 @@
                     if (player.canUseSpecial()) {
                         player.useSpecial(enemy);
                     } else {
-                        cout << "You can't use Special right now! Defaulting to Attack.\n";
+                        cout << "You can't use Crashout right now! Attacking instead\n";
                         enemy.TakeDamage(20);
                     }
                 }
+                else if (setChoice == "defend" || userChoice == "4") {
+                    player.defend()
                 else {
                     enemy.TakeDamage(20);
                 }
             player.TakeDamage(10);
     }
 
-if (enemy.getHealth() == 0) {
-    player.AddHealing(100);
-    cout << "You win! \n";
-}
-else if (player.getHealth() == 0){
-    PLAYERDEAD = true;
-    cout << "You died \n";
-}
+    if (enemy.getHealth() == 0) {
+        player.AddHealing(100);
+        cout << "You win! \n";
+    }
+    else if (player.getHealth() == 0){
+        PLAYERDEAD = true;
+        cout << "You died \n";
+    }
 }
 
 void BattleCycleClass::healthStatus(CreatureClass& player, CreatureClass & enemy) {

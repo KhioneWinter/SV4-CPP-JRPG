@@ -11,6 +11,7 @@ class CreatureClass {
     protected:
         string name;
         int health;
+        int maxhealth;
         string wepon;
         map<string, int> moves;
     public: 
@@ -20,5 +21,6 @@ class CreatureClass {
         void setName(const string& newName);
         bool isAlive() const;
         string getName() const;
-        int getHealth() const ;
+        int getHealth() const;
+        int getMaxHealth() const;
 };
