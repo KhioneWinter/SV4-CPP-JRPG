@@ -18,6 +18,5 @@ public:
     void nextEnemy();
     int currEnemy();
     void run();
-    void addStorySetting();
-    void addTitleScreen();
+    void addStoryElement(string filename);
 };
