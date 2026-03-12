@@ -17,10 +17,9 @@ int GameManagerClass::currEnemy() {
 void GameManagerClass::run() {
     // Runs the game
     system("clear");
-    // addTitleScreen();
-
-    // cout << "\nPress enter to continue: ";
-    // cin.ignore(); 
+    addStoryElement("titleScreen.txt");
+    cout << "\nPress enter to continue: ";
+    cin.ignore(); 
 
     // cout << "Please enter your name: ";
     // string name;
@@ -30,11 +29,11 @@ void GameManagerClass::run() {
     //     cout << "\n";
     // }
 
-    // system("clear");
-    // addStorySetting();
+    system("clear");
+    addStoryElement("storySetting.txt");
 
-    // cout << "\nPress enter to continue: ";
-    // cin.ignore(); 
+    cout << "\nPress enter to continue: ";
+    cin.ignore(); 
 
     while (!PLAYERDEAD && currentEnemy < (int)enemies.size()-1) {
         nextEnemy();
@@ -43,31 +42,14 @@ void GameManagerClass::run() {
     }
 }
 
-void GameManagerClass::addStorySetting() {
-    ifstream file("storySetting.txt");
+void GameManagerClass::addStoryElement(string filename) {
+    ifstream file(filename);
 
-    string story;
-
-    if (file.is_open() ) {
-        while (getline(file, story)) {
-            cout << story << endl;
-        }
-
-        file.close();
-    } 
-    else {
-        cerr << "Error with file opening" << endl;
-    }
-}
-
-void GameManagerClass::addTitleScreen() {
-    ifstream file("titlescreen.txt");
-
-    string title;
+    string element;
 
     if (file.is_open() ) {
-        while (getline(file, title)) {
-            cout << title << endl;
+        while (getline(file, element)) {
+            cout << element << endl;
         }
 
         file.close();

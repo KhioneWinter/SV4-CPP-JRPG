@@ -48,7 +48,7 @@ Students:
 
 -------------------------------------------
 
-## Compilation and Running the code!!
+## Compilation and Running the Game!!
 
 # Compile walk through:
 ```bash
@@ -56,41 +56,25 @@ make
 ```
 
 Then we have 1 executable test file:
-- `test_syntaxtree`
+- `JRPG_test`
 
-# Run simple unit tests:
+# Run game:
 ```bash
-./test_syntaxtree.out
+./JRPG_test.out
 ```
-
-# To add chosen input into the program and into a file run:
-```bash
-./test_syntaxtree.out output.txt input.txt
-```
-
-File names can be chosen dont need to be input/output
-for example adding 2*3+5 into input.txt
-
-Then:
-# To read from the tree file:
-```bash
-./test_syntaxtree.out output.txt
-```
-
-Reads the tree and gives the result from the tree!
 
 # Clean compiled files:
 ```bash
 make clean
 ```
-Need to execute make cleen if you make any changes to the files and want to use make on them again again.
 
 ------------------------------------------------
 
 # All the Files Included in the Submission
-- **Header files**: `SyntaxTree.h`
-- **Implementation files**: `SyntaxTree.cpp`
-- **Simple test files**: `test_syntaxtree.cpp`
+- **Header files**: `Creature.hpp`, `Enemy.hpp`, `GameCycle.hpp`, `GameManager.hpp`, `JRPG.hpp`, `Player.hpp`
+- **Implementation files**: `Creature.cpp`, `Enemy.cpp`, `GameCycle.cpp`, `GameManager.cpp`, 
+    `JRPG.cpp`, `Player.cpp`
+- **Text files**: `boss0.txt`, `boss1.txt`, `boss2.txt`, `protag.txt`, `storySetting.txt`, `titleScreen.txt`
 
 - **Build system**: `Makefile`
 - **Documentation**: `README.md`
