@@ -1,7 +1,7 @@
 #include "Creature.hpp"
 
 CreatureClass::CreatureClass(string charN, int hp, string wep, map<string, int> mov) 
-        : name(charN), health(hp), wepon(wep), moves(mov) {};
+        : name(charN), health(hp), maxhealth(hp) wepon(wep), moves(mov) {};
 
     void CreatureClass::setName(const string& newName) {
         name = newName;

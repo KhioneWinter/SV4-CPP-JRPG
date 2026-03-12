@@ -45,7 +45,7 @@
                     }
                 }
                 else if (setChoice == "defend" || userChoice == "4") {
-                    player.defend()
+                    player.defend();
                 else {
                     enemy.TakeDamage(20);
                 }
