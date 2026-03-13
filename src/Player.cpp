@@ -11,23 +11,23 @@ CharacterClass::CharacterClass()
     }
 
     void CharacterClass::roadChoice() {
-    std::cout << "\nThe hallway before you reveals a classroom, take a break, or keep going?:\n";
-    std::cout << "1. Take a quick break (Increase max health by 10)\n";
-    std::cout << "2. Trek on (Increase your attack by 10)\n";
+        std::cout << "\nThe hallway before you reveals a classroom, take a break, or trek on?:\n";
+        std::cout << "1. Take a quick break (Increase everyone's max health by 10)\n";
+        std::cout << "2. Trek on (Increase everyone's attack by 10)\n";
 
-    std::string choice;
-    std::getline(std::cin, choice);
+        std::string choice;
+        std::getline(std::cin, choice);
 
-    if (choice == "1") {
-        maxhealth += 10;
-        AddHealing(10);
-        std::cout << "You take a break, you feel healthier than before. Max health is now " << maxhealth << ".\n";
-    } else if (choice == "2") {
-        attack += 10;
-        std::cout << "You keep going despite the adversities, you feel stronger than before. Attack power increased to " << attack << ".\n";
-    } else {
-        std::cout << "Invalid input. You sluggishly continue, nothing has changed. The lights flicker.\n";
-    }
+        if (choice == "1") {
+            maxhealth += 10;
+            AddHealing(120);
+            std::cout << "You take a break, you feel much better than before. Max health is now " << maxhealth << ".\n";
+        } else if (choice == "2") {
+            attack += 10;
+            std::cout << "You keep going despite the adversities, you feel stronger than before. Attack power increased to " << attack << ".\n";
+        } else {
+            std::cout << "Invalid input. You sluggishly continue, nothing has changed. The lights flicker.\n";
+        }
     }
 
     int CharacterClass::getAttack() const {
@@ -39,7 +39,7 @@ CharacterClass::CharacterClass()
     }
 
     void CharacterClass::defend(CreatureClass& player, int defense) {
-        cout << "You brace yourself, preparing some of the incoming attack\n";
+        cout << "You brace yourself, preparing for the incoming attack\n";
     }
 
     void CharacterClass::useSpecial(CreatureClass& enemy) {
