@@ -2,10 +2,10 @@
 
 GameManagerClass::GameManagerClass() {
     enemies.push_back(EnemyClass("TEITUR", 120, 120, 10, {{0, 0}}, {{0, 0}}, {{"Ahahahahaaa", 10}, {"Æ, aftur??", 20}}));
-    enemies.push_back(EnemyClass("KONRÁÐ", 150, 150, 10, {{1, 20}}, {{1, 20}},{{"Wrahh", 10}, {"Skilurðu þetta?!", 20}}));
-    enemies.push_back(EnemyClass("ATLI", 200, 200, 10, {{2, 30}}, {{2, 30}},{{"UGhhhhh", 20}, {"Back in my day-", 30}}));
-    characters.push_back(CharacterClass("BRYNHILDUR", 120, 120, 30, {{1, 20}}, {{1, 30}},{{"ahahaha", 10}, {"Crunch hour!", 30}}));
-    characters.push_back(CharacterClass("SARA", 100, 100, 20, {{1, 20}}, {{1, 40}}, {{"on noo..", 20}, {"Caffiene Crashout!", 40}}));
+    enemies.push_back(EnemyClass("KONRÁÐ", 150, 150, 20, {{1, 20}}, {{1, 20}},{{"Wrahh", 10}, {"Skilurðu þetta?!", 20}}));
+    enemies.push_back(EnemyClass("ATLI", 200, 200, 30, {{2, 30}}, {{2, 40}},{{"UGhhhhh", 20}, {"Back in my day-", 30}}));
+    characters.push_back(CharacterClass("BRYNHILDUR", 120, 120, 30, {{1, 60}}, {{1, 30}},{{"ahahaha", 10}, {"Crunch hour!", 30}}));
+    characters.push_back(CharacterClass("SARA", 100, 100, 20, {{1, 60}}, {{1, 40}}, {{"on noo..", 20}, {"Caffiene Crashout!", 40}}));
 }
 
 void GameManagerClass::nextEnemy() {
@@ -41,6 +41,7 @@ void GameManagerClass::run() {
             break;
         }
         if (currentEnemy == (int)enemies.size()-1) {
+            system("clear");
             addStoryElement("goodEnd.txt");
         }
         else {
