@@ -11,9 +11,6 @@ CharacterClass::CharacterClass()
     }
 
     void CharacterClass::roadChoice() {
-    std::cout << "\nThe hallway before you reveals a classroom, take a break, or keep going?:\n";
-    std::cout << "1. Take a quick break (Increase max health by 10)\n";
-    std::cout << "2. Trek on (Increase your attack by 10)\n";
         std::cout << "\nThe hallway before you reveals a classroom, take a break, or trek on?:\n";
         std::cout << "1. Take a quick break (Increase everyone's max health by 10)\n";
         std::cout << "2. Trek on (Increase everyone's attack by 10)\n";
