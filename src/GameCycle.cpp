@@ -21,14 +21,12 @@
 
                 
                 for (size_t  i = 0; i < userChoice.size(); i++) {
-                    if (!isdigit(userChoice[i])) {   // ✅ check each character individually
+                    if (!isdigit(userChoice[i])) {   
                         setChoice += tolower(userChoice[i]);
                     }
                 }
 
-                // Trim any spaces from setChoice
                 setChoice.erase(remove(setChoice.begin(), setChoice.end(), ' '), setChoice.end());
-
 
                 if (setChoice == "heal" || userChoice == "1") {
                     player.AddHealing(40);

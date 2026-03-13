@@ -35,10 +35,14 @@ void GameManagerClass::run() {
     cout << "\nPress enter to continue: ";
     cin.ignore(); 
 
-    while (!PLAYERDEAD && currentEnemy < (int)enemies.size()-1) {
+    while (!PLAYERDEAD && currentEnemy < (int)enemies.size()-3) {
         nextEnemy();
         BattleCycleClass BCC;
         BCC.cycle(player, enemies[currentEnemy], currentEnemy);
+        system("clear");
+        addStoryElement("enemyBeaten.txt");
+        // CharacterClass Player;
+        // Player.roadChoice();
     }
 }
 
