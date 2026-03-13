@@ -12,10 +12,11 @@ class CreatureClass {
         string name;
         int health;
         int maxhealth;
+        int defence;
         string wepon;
         map<string, int> moves;
     public: 
-        CreatureClass(string charN, int hp, int maxhp, string wep, map<string, int> mov);
+        CreatureClass(string charN, int hp, int maxhp, int def, string wep, map<string, int> mov);
         void TakeDamage(int amount);
         void AddHealing(int healing);
         void setName(const string& newName);
@@ -23,4 +24,8 @@ class CreatureClass {
         string getName() const;
         int getHealth() const;
         int getMaxHealth() const;
+        int getAttack() const;
+        void defent(CreatureClass& player, int defense);
+        void useSpecial(CreatureClass& enemy);
+
 };

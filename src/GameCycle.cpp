@@ -35,16 +35,16 @@
                     enemy.TakeDamage(20);
                 }
                 else if (setChoice == "special" || userChoice == "3"|| userChoice == "caffeinecrashout") {
-                    if (player.canUseSpecial()) {
-                        player.useSpecial(enemy);
-                    } else {
+                    // if (player.canUseSpecial()) {
+                    //     player.useSpecial(enemy);
+                    // } else {
                         cout << "You can't use Crashout right now! Attacking instead\n";
                         enemy.TakeDamage(20);
-                    }
+                    // }
                 }
-                else if (setChoice == "defend" || userChoice == "4") {
-                    player.defend(player, 30);
-                }
+                // else if (setChoice == "defend" || userChoice == "4") {
+                //     player.defend(player, 30);
+                // }
                 else {
                     enemy.TakeDamage(20);
                 }

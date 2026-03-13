@@ -1,9 +1,9 @@
 #include "GameManager.hpp"
 
 GameManagerClass::GameManagerClass() {
-    enemies.push_back(EnemyClass("TEITUR", 100, 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
-    enemies.push_back(EnemyClass("KONRÁÐ", 100, 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
-    enemies.push_back(EnemyClass("ATLI", 100, 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
+    enemies.push_back(EnemyClass("TEITUR", 100, 100, 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
+    enemies.push_back(EnemyClass("KONRÁÐ", 100, 100, 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
+    enemies.push_back(EnemyClass("ATLI", 100, 100, 100, "Code",{{"Clunk", 4}, {"Special!", 8}}));
 }
 
 void GameManagerClass::nextEnemy() {
@@ -21,14 +21,6 @@ void GameManagerClass::run() {
     cout << "\nPress enter to continue: ";
     cin.ignore(); 
 
-    // cout << "Please enter your name: ";
-    // string name;
-    // getline(cin, name);
-    // if (name != "") {
-    //     player.setName(name);
-    //     cout << "\n";
-    // }
-
     system("clear");
     addStoryElement("storySetting.txt");
 
@@ -41,8 +33,8 @@ void GameManagerClass::run() {
         BCC.cycle(player, enemies[currentEnemy], currentEnemy);
         system("clear");
         addStoryElement("enemyBeaten.txt");
-        // CharacterClass Player;
-        // Player.roadChoice();
+        CharacterClass Player;
+        Player.roadChoice();
     }
 }
 

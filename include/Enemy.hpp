@@ -4,5 +4,5 @@
 class EnemyClass : public CreatureClass {
     int position;
 public:
-    EnemyClass(string charN, int hp, int maxhp,  string wep, map<string, int> mov);
+    EnemyClass(string charN, int hp, int maxhp, int def, string wep, map<string, int> mov);
 };

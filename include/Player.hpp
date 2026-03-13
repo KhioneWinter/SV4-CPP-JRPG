@@ -14,7 +14,7 @@ public:
     bool canUseSpecial() const;
     void useSpecial(CreatureClass& enemy);
     void resetSpecials();
-    void defend(CreatureClass& player, int defense);s
+    void defend(CreatureClass& player, int defense);
     void roadChoice();
     void getAttack();
     void getMaxHealth();

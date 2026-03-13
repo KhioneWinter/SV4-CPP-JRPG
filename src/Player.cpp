@@ -3,7 +3,7 @@
 using namespace std;
 
 CharacterClass::CharacterClass()
-    : CreatureClass("Some Mediocre Students", 100, 100, "Sword", {{"Power move", 6}, {"Heal", -5}, {"Slash", 5}, {"Defend", 0}}),
+    : CreatureClass("Some Mediocre Students", 100, 100, 100, "Sword", {{"Power move", 6}, {"Heal", -5}, {"Slash", 5}, {"Defend", 0}}),
         specialUses(3), defense(30), attack(20) { }
 
     bool CharacterClass::canUseSpecial() const {
@@ -15,42 +15,22 @@ CharacterClass::CharacterClass()
     std::cout << "1. Take a quick break (Increase max health by 10)\n";
     std::cout << "2. Trek on (Increase your attack by 10)\n";
 
-    std::string choice;
-    std::getline(std::cin, choice);
+    // std::string choice;
+    // std::getline(std::cin, choice);
 
-    if (choice == "1") {
-        maxhealth += 10;
-        AddHealing(10);
-        std::cout << "You take a break, you feel healthier than before. Max health is now " << maxhealth << ".\n";
-    } else if (choice == "2") {
-        attack += 10;
-        std::cout << "You keep going despite the adversities, you feel stronger than before. Attack power increased to " << attack << ".\n";
-    } else {
-        std::cout << "Invalid input. You sluggishly continue, nothing has changed. The lights flicker.\n";
-    }
-    }
-
-    int CharacterClass::getAttack() const {
-        return attack;
+    // if (choice == "1") {
+    //     maxhealth += 10;
+    //     AddHealing(10);
+    //     std::cout << "You take a break, you feel healthier than before. Max health is now " << maxhealth << ".\n";
+    // } else if (choice == "2") {
+    //     attack += 10;
+    //     std::cout << "You keep going despite the adversities, you feel stronger than before. Attack power increased to " << attack << ".\n";
+    // } else {
+    //     std::cout << "Invalid input. You sluggishly continue, nothing has changed. The lights flicker.\n";
+    // }
     }
 
-    int CharacterClass::getMaxHealth() const {
-        return maxhealth;
-    }
-
-    void CharacterClass::defend(CreatureClass& player, int defense) {
-        cout << "You brace yourself, preparing some of the incoming attack\n";
-    }
-
-    void CharacterClass::useSpecial(CreatureClass& enemy) {
-        if (specialUses > 0) {
-            enemy.TakeDamage(30); // special damage
-            specialUses--;
-            cout << "Caffeine Crashout used! " << specialUses << " drinks remaining.\n";
-        } else {
-            cout << "No caffeinated drinks left!\n";
-        }
-    }
+    
 
     void CharacterClass::resetSpecials() { specialUses = 3; }
 
