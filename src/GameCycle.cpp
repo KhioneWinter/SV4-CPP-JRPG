@@ -17,8 +17,12 @@
         int chosenToPlay = stoi(chosenPlayer) -1;
         CharacterClass& player = characters[chosenToPlay];
 
+        player.resetHealth();
+        enemy.resetHealth();
         player.resetSpecials();
+        player.resetHealing();
         enemy.resetSpecials();
+        enemy.resetHealing();
         bool playerIsDefending = false;
 
         while (player.getHealth() > 0 && enemy.getHealth() > 0) {
@@ -170,4 +174,3 @@ void BattleCycleClass::enemyPicture(int enemyIdx, int chosenPlayer) {
         cerr << "Error with file opening" << endl;
     }
 }
-

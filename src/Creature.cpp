@@ -124,6 +124,7 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, vector<pa
     // Simple returns, name, health and status
     void CreatureClass::resetSpecials() { specialMoves[0].first = MaxSpecials; }
     void CreatureClass::resetHealing() {healingMoves[0].first = MaxHealing;}
+    void CreatureClass::resetHealth() { health = maxhealth; }
     bool CreatureClass::isAlive() const {return health > 0;}
     string CreatureClass::getName() const {return name;}
     int CreatureClass::getHealth() const {return health;}

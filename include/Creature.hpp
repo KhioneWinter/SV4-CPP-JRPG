@@ -47,5 +47,6 @@ class CreatureClass {
         void addToSpecial();
         void addToHeals();
         void resetHealing();
+        void resetHealth();
         void defend();
 };
