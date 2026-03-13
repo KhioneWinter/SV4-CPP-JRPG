@@ -10,27 +10,36 @@ CharacterClass::CharacterClass()
         return CharacterClass::specialUses > 0;
     }
 
-    void CharacterClass::attackIncrease(){
-        cout << "You keep going despite the adversities, you feel stronger than before\n";
+    void CharacterClass::roadChoice() {
+    std::cout << "\nThe hallway before you reveals a classroom, take a break, or keep going?:\n";
+    std::cout << "1. Take a quick break (Increase max health by 10)\n";
+    std::cout << "2. Trek on (Increase your attack by 10)\n";
+
+    std::string choice;
+    std::getline(std::cin, choice);
+
+    if (choice == "1") {
+        maxhealth += 10;
+        AddHealing(10);
+        std::cout << "You take a break, you feel healthier than before. Max health is now " << maxhealth << ".\n";
+    } else if (choice == "2") {
         attack += 10;
+        std::cout << "You keep going despite the adversities, you feel stronger than before. Attack power increased to " << attack << ".\n";
+    } else {
+        std::cout << "Invalid input. You sluggishly continue, nothing has changed. The lights flicker.\n";
+    }
     }
 
-    void CharacterClass::healthIncrease(){
-        cout << "You Make a quick rest stop, you feel healthier than before\n";
-        maxhealth += 10;
+    int CharacterClass::getAttack() const {
+        return attack;
+    }
+
+    int CharacterClass::getMaxHealth() const {
+        return maxhealth;
     }
 
     void CharacterClass::defend(CreatureClass& player, int defense) {
-        // TODO: Tweak defense and ennemies to make this actually worth choosing
-        // communicate that player is out of defense
-        if (defense > 0) {
-            defense -= 10;
-            player.AddHealing(10);
-            cout << "That was a close one! You let down your defense, and take a deep breath\n";
-            }
-        else {
-            cout << "You don't have it in you to defend anymore\n";
-        }
+        cout << "You brace yourself, preparing some of the incoming attack\n";
     }
 
     void CharacterClass::useSpecial(CreatureClass& enemy) {
