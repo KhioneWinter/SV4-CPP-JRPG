@@ -44,11 +44,6 @@
                 }
 
                 if (userChoice == "1") {
-<<<<<<< HEAD
-                    player.AddHealing(40);
-                }
-                else if (userChoice == "2"){
-=======
                     cout << "used healing\n";
                     if (player.canUseHealing()) {
                         player.useHealing(player);
@@ -59,7 +54,6 @@
                 }
                 else if (userChoice == "2"){
                     cout << "used attack!\n";
->>>>>>> bree
                     enemy.TakeDamage(20);
                 }
                 else if (userChoice == "3") {
@@ -71,11 +65,7 @@
                     }
                 }
                 else if (userChoice == "4") {
-<<<<<<< HEAD
-                    
-=======
                     cout << "used defence\n";
->>>>>>> bree
                     // player.defend();
                 }
                 else {
@@ -124,11 +114,7 @@ void BattleCycleClass::healthStatus(CreatureClass& player, CreatureClass & enemy
             }
         }
         int grayAmountE;
-<<<<<<< HEAD
-        grayAmountE = (enemy.getMaxHealth() / 10) - (enemy.getHealth() / 10);
-=======
         grayAmountE = blockwidth - filledEnemy;
->>>>>>> bree
         for (int i = 0; i < grayAmountE; i++) {
             cout << "⬛";
         }
@@ -149,11 +135,7 @@ void BattleCycleClass::healthStatus(CreatureClass& player, CreatureClass & enemy
             }
         }
         int grayAmountP;
-<<<<<<< HEAD
-        grayAmountP = (player.getMaxHealth() / 10) - (player.getHealth() / 10);
-=======
         grayAmountP = blockwidth2 - filledplayer;
->>>>>>> bree
         for (int i = 0; i < grayAmountP; i++) {
             cout << "⬛";
         }
