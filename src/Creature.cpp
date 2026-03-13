@@ -60,9 +60,13 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, vector<pa
         return specialMoves[0].first > 0;
     }
 
+    bool CreatureClass::canUseHealing() const {
+        return healingMoves[0].first > 0;
+    }
+
     void CreatureClass::useSpecial(CreatureClass& enemy) {
         if (specialMoves[0].first > 0) {
-            enemy.TakeDamage(30); // special damage
+            enemy.TakeDamage(30); 
             specialMoves[0].first--;
             cout << "Caffeine Crashout used! " << specialMoves[0].first << " drinks remaining.\n";
         } else {
@@ -70,8 +74,14 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, vector<pa
         }
     }
 
-    int CreatureClass::specialsLeft() const {
-        return specialMoves[0].first;
+    void CreatureClass::useHealing(CreatureClass& player) {
+        if (healingMoves[0].first > 0) {
+            player.AddHealing(healingMoves[0].second);
+            healingMoves[0].first--;
+            cout << "Healing used! \n";
+        } else {
+            cout << "No healing left!\n";
+        }
     }
 
     int CreatureClass::specialsTotal() const {

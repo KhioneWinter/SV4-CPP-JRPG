@@ -35,10 +35,6 @@ class CreatureClass {
         void resetSpecials();
         void addMaxHealth(int amount);
         void addAttack(int amount);
-        void addToSpecial();
-        void addToHeals();
-        void resetHealing();
-        int specialsLeft() const;
         int specialsTotal() const;
         int healingAmount() const;
         int healingTotal() const;
@@ -46,4 +42,6 @@ class CreatureClass {
         int getHealingAmount();
         int getSpecialsAmount();
         int specialsAmount() const;
+        bool canUseHealing() const;
+        void useHealing(CreatureClass& player);
 };

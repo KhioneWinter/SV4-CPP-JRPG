@@ -28,10 +28,10 @@
 
                 string userChoice;
                 cout << "What would you like to do? \n";
-                cout << "- 1. Heal " << player.getHealingAmount() << "("<< player.healingAmount() << "/" << player.healingTotal()<< ")\n";
-                cout << "- 2. Attack\n";
-                cout << "- 3. Special: " + player.specialName() +" (" << player.specialsLeft() << "/"<< player.specialsTotal() << ")\n";
-                cout << "- 4. Defend\n \n";
+                cout << "- 1. Heal " << player.healingAmount() << "hp ("<< player.getHealingAmount() << "/" << player.healingTotal()<< ")\n";
+                cout << "- 2. Attack " << player.getAttack() << "hp\n";
+                cout << "- 3. Special: " + player.specialName() +" "<< player.specialsAmount() << "hp (" << player.getSpecialsAmount() << "/"<< player.specialsTotal() << ")\n";
+                cout << "- 4. Defend "<< player.getDefence() <<"hp\n \n";
 
                 cin.ignore();
                 getline(cin, userChoice);
@@ -44,9 +44,22 @@
                 }
 
                 if (userChoice == "1") {
+<<<<<<< HEAD
                     player.AddHealing(40);
                 }
                 else if (userChoice == "2"){
+=======
+                    cout << "used healing\n";
+                    if (player.canUseHealing()) {
+                        player.useHealing(player);
+                    } else {
+                        cout << "You can't use healing now! Attacking instead\n";
+                        enemy.TakeDamage(20);
+                    }
+                }
+                else if (userChoice == "2"){
+                    cout << "used attack!\n";
+>>>>>>> bree
                     enemy.TakeDamage(20);
                 }
                 else if (userChoice == "3") {
@@ -58,7 +71,11 @@
                     }
                 }
                 else if (userChoice == "4") {
+<<<<<<< HEAD
                     
+=======
+                    cout << "used defence\n";
+>>>>>>> bree
                     // player.defend();
                 }
                 else {
@@ -92,12 +109,14 @@ void BattleCycleClass::healthStatus(CreatureClass& player, CreatureClass & enemy
 
         cout << "\n-------------------------------------------------- | STATS | ------------------------------------------------------------\n";
 
+        int blockwidth = 10;
+        int filledEnemy = (enemy.getHealth() * blockwidth) / enemy.getMaxHealth();
         cout << "🔶 " << enemy.getName() << ": (HP: " ;
-        for (int i = 0; i < (enemy.getHealth() / 10); i++) {
-            if (enemy.getHealth() > 50) {
+        for (int i = 0; i < filledEnemy; i++) {
+            if (enemy.getHealth() > enemy.getMaxHealth() * 0.6) {
                 cout << "🟩";
             }
-            else if (enemy.getHealth() > 25) {
+            else if (enemy.getHealth() > enemy.getMaxHealth() * 0.3) {
                 cout << "🟨";
             }
             else {
@@ -105,18 +124,24 @@ void BattleCycleClass::healthStatus(CreatureClass& player, CreatureClass & enemy
             }
         }
         int grayAmountE;
+<<<<<<< HEAD
         grayAmountE = (enemy.getMaxHealth() / 10) - (enemy.getHealth() / 10);
+=======
+        grayAmountE = blockwidth - filledEnemy;
+>>>>>>> bree
         for (int i = 0; i < grayAmountE; i++) {
             cout << "⬛";
         }
 
         cout << ")                        "; 
         cout << "🔷 " << player.getName() << ": (HP: " ;
-        for (int i = 0; i < (player.getHealth() / 10); i++) {
-            if (player.getHealth() > 50) {
+        int blockwidth2 = 10;
+        int filledplayer = (player.getHealth() * blockwidth2) / player.getMaxHealth();
+        for (int i = 0; i < filledplayer; i++) {
+            if (player.getHealth() > player.getMaxHealth() * 0.6) {
                 cout << "🟩";
             }
-            else if (player.getHealth() > 25) {
+            else if (player.getHealth() > player.getMaxHealth() * 0.3) {
                 cout << "🟨";
             }
             else {
@@ -124,7 +149,11 @@ void BattleCycleClass::healthStatus(CreatureClass& player, CreatureClass & enemy
             }
         }
         int grayAmountP;
+<<<<<<< HEAD
         grayAmountP = (player.getMaxHealth() / 10) - (player.getHealth() / 10);
+=======
+        grayAmountP = blockwidth2 - filledplayer;
+>>>>>>> bree
         for (int i = 0; i < grayAmountP; i++) {
             cout << "⬛";
         }
