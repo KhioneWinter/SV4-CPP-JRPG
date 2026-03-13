@@ -34,4 +34,5 @@ class CreatureClass {
         void resetSpecials();
         void addMaxHealth(int amount);
         void addAttack(int amount);
+        pair<string,int> chooseMove() const;
 };

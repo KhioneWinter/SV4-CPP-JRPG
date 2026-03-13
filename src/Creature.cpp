@@ -67,6 +67,11 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
         mov[0].second += amount;
     }
 
+    pair<string,int> CreatureClass::chooseMove() const {
+        int index = rand() % mov.size();
+        return mov[index];
+    }
+
     // Simple returns, name, health and status
     void CreatureClass::resetSpecials() { specialUses = 3; }
     bool CreatureClass::isAlive() const {return health > 0;}
