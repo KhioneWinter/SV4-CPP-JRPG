@@ -2,10 +2,10 @@
 #include <ctime>
 
 GameManagerClass::GameManagerClass() {
-    enemies.push_back(EnemyClass("TEITUR", 120, 120, 10, {{3, 40}}, {{2, 30}}, {{"Computer Bash", 10}, {"Hvernig fórstu að þessu??", 20}}));
-    enemies.push_back(EnemyClass("KONRÁÐ", 150, 150, 10, {{3, 40}}, {{2, 30}}, {{"PC Smackdown", 10}, {"Skilurðu þetta?!", 20}, {"All Nighter", 30}}));
-    enemies.push_back(EnemyClass("ATLI", 200, 200, 10, {{3, 40}}, {{2, 30}}, {{"Grade Hammer", 20}, {"Back in my day-", 30}, {"All Weeker", 30}}));
-    characters.push_back(CharacterClass("BRYNHILDUR", 120, 120, 30, {{3, 40}}, {{2, 30}},{{"ahahaha", 10}, {"Crunch hour!", 20}}));
+    enemies.push_back(EnemyClass("TEITUR", 120, 120, 10, {{3, 30}}, {{3, 30}}, {{"Computer Bash", 10}, {"Hvernig fórstu að þessu??", 20}}));
+    enemies.push_back(EnemyClass("KONRÁÐ", 150, 150, 10, {{3, 30}}, {{3, 30}}, {{"PC Smackdown", 10}, {"Skilurðu þetta?!", 20}, {"All Nighter", 30}}));
+    enemies.push_back(EnemyClass("ATLI", 200, 200, 10, {{3, 30}}, {{3, 30}}, {{"Grade Hammer", 20}, {"Back in my day-", 30}, {"All Weeker", 30}}));
+    characters.push_back(CharacterClass("BRYNHILDUR", 120, 120, 30, {{3, 40}}, {{2, 30}}, {{"ahahaha", 10}, {"Crunch hour!", 20}}));
     characters.push_back(CharacterClass("SARA", 100, 100, 20, {{3, 40}}, {{2, 30}}, {{"on noo..", 20}, {"Caffiene Crashout!", 30}}));
 }
 
@@ -42,7 +42,6 @@ void GameManagerClass::run() {
             break;
         }
         if (currentEnemy == (int)enemies.size()-1) {
-            system("clear");
             addStoryElement("goodEnd.txt");
         }
         else {
@@ -95,9 +94,9 @@ void GameManagerClass::roadChoice() {
         } 
 
 
-        cout << "You feel inspired!\n";
-        cout << "1. Compliment yourself (Increase max healing by 1)\n";
-        cout << "2. Dance! (Increase max special by 1)\n";
+        cout << "You spot some items lying around!\n";
+        cout << "1. Grab a healing potion (Increase max healing by 1)\n";
+        cout << "2. Grab an energy drink! (Increase max special by 1)\n";
 
         string secondChoince;
         getline(cin, secondChoince);

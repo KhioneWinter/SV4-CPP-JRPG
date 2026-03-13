@@ -44,4 +44,7 @@ class CreatureClass {
         int specialsAmount() const;
         bool canUseHealing() const;
         void useHealing(CreatureClass& player);
+        void addToSpecial();
+        void addToHeals();
+        void resetHealing();
 };
