@@ -27,11 +27,14 @@ class CreatureClass {
         int getMaxHealth() const;
         int getDefence() const;
         int getAttack() const;
-        void defent(CreatureClass& player, int defense);
         void useSpecial(CreatureClass& enemy);
         string specialName() const;
         bool canUseSpecial() const;
         void resetSpecials();
         void addMaxHealth(int amount);
         void addAttack(int amount);
+        int specialsLeft() const;
+        int specialsTotal() const;
+        int healingAmount() const;
+        int healingTotal() const;
 };
