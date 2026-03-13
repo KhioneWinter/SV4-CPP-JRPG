@@ -2,9 +2,10 @@
 
 using namespace std;
 
-CharacterClass::CharacterClass()
-    : CreatureClass("Some Mediocre Students", 100, 100, 100, "Sword", {{"Power move", 6}, {"Heal", -5}, {"Slash", 5}, {"Defend", 0}}),
-        specialUses(3), defense(30), attack(20) { }
+// CharacterClass::CharacterClass() : CreatureClass("", 0, 0, 0, "", {}), position(0), specialUses(0), defense(0), attack(0) {}
+
+CharacterClass::CharacterClass(string charN, int hp, int maxhp, int def, string wep, map<string, int> mov)
+    : CreatureClass(charN, hp, maxhp, def, wep, mov){};
 
     bool CharacterClass::canUseSpecial() const {
         return CharacterClass::specialUses > 0;

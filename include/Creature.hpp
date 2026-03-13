@@ -24,7 +24,8 @@ class CreatureClass {
         string getName() const;
         int getHealth() const;
         int getMaxHealth() const;
-        int getAttack() const;
+        int getDefence() const;
+        // int getAttack() const;
         void defent(CreatureClass& player, int defense);
         void useSpecial(CreatureClass& enemy);
 

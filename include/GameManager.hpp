@@ -10,8 +10,8 @@ using namespace std;
 extern bool PLAYERDEAD;  
 
 class GameManagerClass {
-    CharacterClass player;
     vector<EnemyClass> enemies;
+    vector<CharacterClass> characters;
     int currentEnemy = -1;
 public: 
     GameManagerClass();

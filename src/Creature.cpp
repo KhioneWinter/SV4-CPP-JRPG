@@ -33,6 +33,10 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
         return maxhealth;
     }
 
+    int CreatureClass::getDefence() const {
+        return defence;
+    }
+
     // void CreatureClass::defend(CreatureClass& player, int defense) {
     //     cout << "You brace yourself, preparing some of the incoming attack\n";
     // }
