@@ -10,10 +10,12 @@
         cout << "2. " << characters[1].getName() << ", Max health: " << characters[1].getMaxHealth() << ", Defence: " << characters[1].getDefence() << ", Attack " << characters[1].getAttack() << "\n";
         cout << "\nChoice: ";
         string chosenPlayer;
-        cin >> chosenPlayer;
+        getline(cin, chosenPlayer);
+        checkIfValidInt(chosenPlayer);
         while (chosenPlayer != "1" && chosenPlayer != "2") {
             cout << "\nPlease choose 1 or 2: ";
             cin >> chosenPlayer;
+            checkIfValidInt(chosenPlayer);
         }
         int chosenToPlay = stoi(chosenPlayer) -1;
         CharacterClass& player = characters[chosenToPlay];
@@ -32,18 +34,14 @@
                 cout << "- 4. Defend\n \n";
 
                 getline(cin, userChoice);
-                string setChoice = "";
-
-                for (size_t  i = 0; i < userChoice.size(); i++) {
-                    if (!isdigit(userChoice[i])) {   
-                        setChoice += tolower(userChoice[i]);
-                    }
-                }
+                userChoice = checkIfValidInt(userChoice);
 
                 if (userChoice == "1") {
+                    cout << "used healing";
                     player.AddHealing(40);
                 }
                 else if (userChoice == "2"){
+                    cout << "used attack!";
                     enemy.TakeDamage(20);
                 }
                 else if (userChoice == "3") {
@@ -55,13 +53,18 @@
                     }
                 }
                 else if (userChoice == "4") {
-                    
+                    cout << "used defence";
                     // player.defend();
                 }
                 else {
                     enemy.TakeDamage(20);
                 }
             player.TakeDamage(20);
+            cout << "do some damage!\n";
+            cout << "Take some damage!\n \n";
+            cout << "Press enter to continue: ";
+            string getCont;
+            getline(cin, getCont); 
     }
 
     if (enemy.getHealth() == 0) {
@@ -136,5 +139,11 @@ void BattleCycleClass::enemyPicture(int enemyIdx, int chosenPlayer) {
     else {
         cerr << "Error with file opening" << endl;
     }
+}
+
+string BattleCycleClass::checkIfValidInt(string userInput) {
+    userInput.erase(0, userInput.find_first_not_of(" \t\r\n"));
+    userInput.erase(userInput.find_last_not_of(" \t\r\n") + 1);
+    return userInput;
 }
 
