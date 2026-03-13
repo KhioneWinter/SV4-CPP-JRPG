@@ -4,8 +4,7 @@
 class CharacterClass : public CreatureClass {
     // Player character stats!
     int position;
-    int defense;
-    int attack;
+    bool defending;
 
 public:
     // Assigning the player character set values

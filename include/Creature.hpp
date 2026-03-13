@@ -16,6 +16,7 @@ class CreatureClass {
         string wepon;
         int specialUses;
         vector<pair<string, int>> mov;
+        
     public: 
         CreatureClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string, int>> mov);
         void TakeDamage(int amount);
@@ -37,4 +38,5 @@ class CreatureClass {
         int specialsTotal() const;
         int healingAmount() const;
         int healingTotal() const;
+        pair<string,int> chooseMove() const;
 };

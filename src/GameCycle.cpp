@@ -1,6 +1,5 @@
 #include "GameCycle.hpp"
 
-
     void BattleCycleClass::cycle(CreatureClass& enemy, vector<CharacterClass>& characters, int enemyIdx){
         system("clear");
         cout << enemy.getName() << " is fast approching!\n";
@@ -17,6 +16,9 @@
         }
         int chosenToPlay = stoi(chosenPlayer) -1;
         CharacterClass& player = characters[chosenToPlay];
+
+        player.resetSpecials();
+        enemy.resetSpecials();
 
         while (player.getHealth() > 0 && enemy.getHealth() > 0) {
             system("clear");
@@ -50,7 +52,7 @@
                     if (player.canUseSpecial()) {
                         player.useSpecial(enemy);
                     } else {
-                        cout << "You can't use Crashout right now! Attacking instead\n";
+                        cout << "You can't use your special right now! Attacking instead\n";
                         enemy.TakeDamage(20);
                     }
                 }
@@ -91,7 +93,7 @@ void BattleCycleClass::healthStatus(CreatureClass& player, CreatureClass & enemy
             }
         }
         int grayAmountE;
-        grayAmountE = 10 - (enemy.getHealth() / 10);
+        grayAmountE = (enemy.getMaxHealth() / 10) - (enemy.getHealth() / 10);
         for (int i = 0; i < grayAmountE; i++) {
             cout << "⬛";
         }
@@ -110,7 +112,7 @@ void BattleCycleClass::healthStatus(CreatureClass& player, CreatureClass & enemy
             }
         }
         int grayAmountP;
-        grayAmountP = 10 - (player.getHealth() / 10);
+        grayAmountP = (player.getMaxHealth() / 10) - (player.getHealth() / 10);
         for (int i = 0; i < grayAmountP; i++) {
             cout << "⬛";
         }

@@ -1,7 +1,7 @@
 #include "Creature.hpp"
 
-CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string, int>> mov) 
-        : name(charN), health(hp), maxhealth(maxhp), defence(def), wepon(wep), mov(mov) {};
+CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string,int>> mov)
+    : name(charN), health(hp), maxhealth(maxhp), defence(def), wepon(wep), specialUses(2), mov(mov) {}
 
     void CreatureClass::setName(const string& newName) {
         name = newName;
@@ -53,7 +53,7 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
         if (specialUses > 0) {
             enemy.TakeDamage(30); // special damage
             specialUses--;
-            cout << "Caffeine Crashout used! " << specialUses << " drinks remaining.\n";
+            cout << "Caffeine Crashout used! " << specialUses << " drink remaining.\n";
         } else {
             cout << "No caffeinated drinks left!\n";
         }
@@ -64,7 +64,7 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
     }
 
     int CreatureClass::specialsTotal() const {
-        return 3;
+        return 2;
     } 
 
     void CreatureClass::addMaxHealth(int amount) {
@@ -83,8 +83,13 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
         return 3;
     }
 
+    pair<string,int> CreatureClass::chooseMove() const {
+        int index = rand() % mov.size();
+        return mov[index];
+    }
+
     // Simple returns, name, health and status
-    void CreatureClass::resetSpecials() { specialUses = 3; }
+    void CreatureClass::resetSpecials() { specialUses = 2; }
     bool CreatureClass::isAlive() const {return health > 0;}
     string CreatureClass::getName() const {return name;}
     int CreatureClass::getHealth() const {return health;}
