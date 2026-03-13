@@ -1,8 +1,8 @@
 #include "Enemy.hpp"
 #include <cstdlib>
 
-EnemyClass::EnemyClass(string charN, int hp, int maxhp, int def, vector<pair<string,int>> mov)
-    : CreatureClass(charN, hp, maxhp, def, 3, 3, mov) {}  // 3 heals, 3 specials
+EnemyClass::EnemyClass(string charN, int hp, int maxhp, int def, vector<pair<int, int>> healingMoves, vector<pair<int, int>> specialMoves, vector<pair<string, int>> mov)
+    : CreatureClass(charN, hp, maxhp, def, healingMoves, specialMoves, mov) {};
     pair<string,int> EnemyClass::chooseMove() const {
         // if health below 30%, 70% chance to heal
         if (health < maxhealth / 3 && rand() % 100 < 70) {
