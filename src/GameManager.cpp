@@ -2,9 +2,9 @@
 #include <ctime>
 
 GameManagerClass::GameManagerClass() {
-    enemies.push_back(EnemyClass("TEITUR", 120, 120, 10, "Code",{{"Computer Bash", 10}, {"Hvernig fórstu að þessu??", 20}}));
-    enemies.push_back(EnemyClass("KONRÁÐ", 150, 150, 10, "Code",{{"PC Smackdown", 10}, {"Skilurðu þetta?!", 20},{"All Nighter", 30}}));
-    enemies.push_back(EnemyClass("ATLI", 200, 200, 10, "Code",{{"Grade Hammer", 20}, {"Back in my day-", 30}, {"All Weeker", 30}}));
+    enemies.push_back(EnemyClass("TEITUR", 120, 120, 10, {{"Computer Bash", 10}, {"Hvernig fórstu að þessu??", 20}}));
+    enemies.push_back(EnemyClass("KONRÁÐ", 150, 150, 10, {{"PC Smackdown", 10}, {"Skilurðu þetta?!", 20}, {"All Nighter", 30}}));
+    enemies.push_back(EnemyClass("ATLI", 200, 200, 10, {{"Grade Hammer", 20}, {"Back in my day-", 30}, {"All Weeker", 30}}));
     characters.push_back(CharacterClass("BRYNHILDUR", 120, 120, 30, "Code",{{"ahahaha", 10}, {"Crunch hour!", 20}}));
     characters.push_back(CharacterClass("SARA", 100, 100, 20, "Code",{{"on noo..", 20}, {"Caffiene Crashout!", 30}}));
 }

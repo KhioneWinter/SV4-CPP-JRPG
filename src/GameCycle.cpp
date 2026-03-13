@@ -1,20 +1,18 @@
 #include "GameCycle.hpp"
 
-    void BattleCycleClass::cycle(CreatureClass& enemy, vector<CharacterClass>& characters, int enemyIdx){
+    void BattleCycleClass::cycle(EnemyClass& enemy, vector<CharacterClass>& characters, int enemyIdx){
         system("clear");
         cout << enemy.getName() << " is fast approching!\n";
         cout << "Enemy stats are: Max health: " << enemy.getMaxHealth() << ", Defence: " << enemy.getDefence() << ", Attack: " << enemy.getAttack() << "\n \n"; 
         cout << "Which would you rather choose?\n";
-        cout << "1. " << characters[0].getName() << ", Max health: " << characters[0].getMaxHealth() << ", Defence: " << characters[0].getDefence() << ", Attack: " << characters[0].getAttack() << "\n"; //  
-        cout << "2. " << characters[1].getName() << ", Max health: " << characters[1].getMaxHealth() << ", Defence: " << characters[1].getDefence() << ", Attack " << characters[1].getAttack() << "\n";
+        cout << "1. " << characters[0].getName() << ", Max health: " << characters[0].getMaxHealth() << ", Defence: " << characters[0].getDefence() << ", Attack: " << characters[0].getAttack() << "\n";
+        cout << "2. " << characters[1].getName() << ", Max health: " << characters[1].getMaxHealth() << ", Defence: " << characters[1].getDefence() << ", Attack: " << characters[1].getAttack() << "\n";
         cout << "\nChoice: ";
         string chosenPlayer;
-        getline(cin, chosenPlayer);
-        checkIfValidInt(chosenPlayer);
+        cin >> chosenPlayer;
         while (chosenPlayer != "1" && chosenPlayer != "2") {
             cout << "\nPlease choose 1 or 2: ";
             cin >> chosenPlayer;
-            checkIfValidInt(chosenPlayer);
         }
         int chosenToPlay = stoi(chosenPlayer) -1;
         CharacterClass& player = characters[chosenToPlay];
@@ -35,15 +33,20 @@
                 cout << "- 3. " + player.specialName() +" (" << player.specialsLeft() << "/"<< player.specialsTotal() << ")\n";
                 cout << "- 4. Defend\n \n";
 
+                cin.ignore();
                 getline(cin, userChoice);
-                userChoice = checkIfValidInt(userChoice);
+                string setChoice = "";
+
+                for (size_t  i = 0; i < userChoice.size(); i++) {
+                    if (!isdigit(userChoice[i])) {   
+                        setChoice += tolower(userChoice[i]);
+                    }
+                }
 
                 if (userChoice == "1") {
-                    cout << "used healing";
                     player.AddHealing(40);
                 }
                 else if (userChoice == "2"){
-                    cout << "used attack!";
                     enemy.TakeDamage(20);
                 }
                 else if (userChoice == "3") {
@@ -55,22 +58,28 @@
                     }
                 }
                 else if (userChoice == "4") {
-                    cout << "used defence";
+                    
                     // player.defend();
                 }
                 else {
                     enemy.TakeDamage(20);
                 }
-            player.TakeDamage(20);
-            cout << "do some damage!\n";
-            cout << "Take some damage!\n \n";
-            cout << "Press enter to continue: ";
-            string getCont;
-            getline(cin, getCont); 
+            pair<string,int> enemyMove = enemy.chooseMove();
+            string enemyMoveName = enemyMove.first;
+            int enemyMoveDamage = enemyMove.second;
+
+            // Decide if enemy heals or attacks
+            if (enemyMoveName == "Heal") {
+                enemy.AddHealing(enemyMoveDamage);
+                cout << enemy.getName() << " uses " << enemyMoveName << " and heals " << enemyMoveDamage << " HP!\n";
+            } else {
+                player.TakeDamage(enemyMoveDamage);
+                cout << enemy.getName() << " uses " << enemyMoveName << " and deals " << enemyMoveDamage << " damage!\n";
+            }
     }
 
     if (enemy.getHealth() == 0) {
-        player.AddHealing(200);
+        player.AddHealing(100);
         cout << "You win! \n";
     }
     else if (player.getHealth() == 0){
@@ -141,11 +150,5 @@ void BattleCycleClass::enemyPicture(int enemyIdx, int chosenPlayer) {
     else {
         cerr << "Error with file opening" << endl;
     }
-}
-
-string BattleCycleClass::checkIfValidInt(string userInput) {
-    userInput.erase(0, userInput.find_first_not_of(" \t\r\n"));
-    userInput.erase(userInput.find_last_not_of(" \t\r\n") + 1);
-    return userInput;
 }
 

@@ -7,20 +7,19 @@
 using namespace std;
 
 class CreatureClass {
-    // Has all values that both player and enemy share
     protected:
         string name;
         int health;
         int maxhealth;
         int defence;
         int healings;
-        int healingsTot = healings;
         int specialUses;
-        int specialsTot = specialUses;
+        int healingsTot;
+        int specialsTot;
         vector<pair<string, int>> mov;
-        
-    public: 
-        CreatureClass(string charN, int hp, int maxhp, int def, int healings, int specialUses, vector<pair<string, int>> mov);
+
+    public:
+        CreatureClass(string charN, int hp, int maxhp, int def, int heals, int specials, vector<pair<string,int>> mov);
         void TakeDamage(int amount);
         void AddHealing(int healing);
         void setName(const string& newName);
@@ -36,9 +35,11 @@ class CreatureClass {
         void resetSpecials();
         void addMaxHealth(int amount);
         void addAttack(int amount);
+        void addToSpecial();
+        void addToHeals();
+        void resetHealing();
         int specialsLeft() const;
         int specialsTotal() const;
         int healingAmount() const;
         int healingTotal() const;
-        pair<string,int> chooseMove() const;
-};
+    };
