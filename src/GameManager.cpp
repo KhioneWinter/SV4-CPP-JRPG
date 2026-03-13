@@ -30,11 +30,18 @@ void GameManagerClass::run() {
     cout << "\nPress enter to continue: ";
     cin.ignore(); 
     system("clear");
-    while (!PLAYERDEAD && currentEnemy < (int)enemies.size()-1) {
+    while (currentEnemy < (int)enemies.size()-1) {
         nextEnemy();
         BattleCycleClass BCC;
         BCC.cycle(enemies[currentEnemy], characters, currentEnemy);
-        if (enemies.size() == 2) {
+        if (PLAYERDEAD) {
+            system("clear");
+            addStoryElement("badEnd.txt");
+            cout << "\nPress enter to quit: ";
+            cin.ignore(); 
+            break;
+        }
+        if (currentEnemy == (int)enemies.size()-1) {
             addStoryElement("goodEnd.txt");
         }
         else {
@@ -43,9 +50,6 @@ void GameManagerClass::run() {
             cout << "\n";
             roadChoice();
         }
-    }
-    if (PLAYERDEAD) {
-        
     }
 }
 

@@ -15,4 +15,5 @@ public:
     void cycle(CreatureClass& enemy, vector<CharacterClass>& characters, int enemyIdx);
     void healthStatus(CreatureClass& player, CreatureClass& enemy);
     void enemyPicture(int enemyIdx, int chosenPlayer);
+    string checkIfValidInt(string userInput);
 };
