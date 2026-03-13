@@ -28,7 +28,7 @@
 
                 string userChoice;
                 cout << "What would you like to do? \n";
-                cout << "- 1. Heal " <<"("<< player.healingAmount() << "/" << player.healingTotal()<< ")\n";
+                cout << "- 1. Heal " << player.getHealingAmount() << "("<< player.healingAmount() << "/" << player.healingTotal()<< ")\n";
                 cout << "- 2. Attack\n";
                 cout << "- 3. Special: " + player.specialName() +" (" << player.specialsLeft() << "/"<< player.specialsTotal() << ")\n";
                 cout << "- 4. Defend\n \n";

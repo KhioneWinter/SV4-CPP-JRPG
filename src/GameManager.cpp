@@ -1,11 +1,11 @@
 #include "GameManager.hpp"
 
 GameManagerClass::GameManagerClass() {
-    enemies.push_back(EnemyClass("TEITUR", 120, 120, 100, 2, 3,{{"Ahahahahaaa", 10}, {"Æ, aftur??", 20}}));
-    enemies.push_back(EnemyClass("KONRÁÐ", 150, 150, 10, 1, 1,{{"Wrahh", 10}, {"Skilurðu þetta?!", 20}}));
-    enemies.push_back(EnemyClass("ATLI", 200, 200, 10, 0, 0,{{"UGhhhhh", 20}, {"Back in my day-", 30}}));
-    characters.push_back(CharacterClass("BRYNHILDUR", 120, 120, 30, 1, 1,{{"ahahaha", 10}, {"Crunch hour!", 20}}));
-    characters.push_back(CharacterClass("SARA", 100, 100, 20, 1, 1,{{"on noo..", 20}, {"Caffiene Crashout!", 30}}));
+    enemies.push_back(EnemyClass("TEITUR", 120, 120, 10, {{0, 0}}, {{0, 0}}, {{"Ahahahahaaa", 10}, {"Æ, aftur??", 20}}));
+    enemies.push_back(EnemyClass("KONRÁÐ", 150, 150, 10, {{1, 20}}, {{1, 20}},{{"Wrahh", 10}, {"Skilurðu þetta?!", 20}}));
+    enemies.push_back(EnemyClass("ATLI", 200, 200, 10, {{2, 30}}, {{2, 30}},{{"UGhhhhh", 20}, {"Back in my day-", 30}}));
+    characters.push_back(CharacterClass("BRYNHILDUR", 120, 120, 30, {{1, 20}}, {{1, 30}},{{"ahahaha", 10}, {"Crunch hour!", 30}}));
+    characters.push_back(CharacterClass("SARA", 100, 100, 20, {{1, 20}}, {{1, 40}}, {{"on noo..", 20}, {"Caffiene Crashout!", 40}}));
 }
 
 void GameManagerClass::nextEnemy() {
