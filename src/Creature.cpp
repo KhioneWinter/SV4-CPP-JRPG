@@ -17,7 +17,7 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, vector<pa
             health = 0;
         }
         // cout << name << " takes " << damage << "damage! \n \n";
-    }
+    }   
 
     void CreatureClass::AddHealing(int healing) {
         // Adds damage to the the player or enemy
@@ -115,6 +115,10 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, vector<pa
 
     int CreatureClass::healingTotal() const {
         return MaxHealing;
+    }
+
+    void CreatureClass::defend() {
+        cout << "You brace yourself, preparing for some of the incoming attack\n";
     }
 
     // Simple returns, name, health and status

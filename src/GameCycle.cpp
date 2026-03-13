@@ -19,6 +19,7 @@
 
         player.resetSpecials();
         enemy.resetSpecials();
+        bool playerIsDefending = false;
 
         while (player.getHealth() > 0 && enemy.getHealth() > 0) {
             system("clear");
@@ -64,8 +65,8 @@
                     }
                 }
                 else if (userChoice == "4") {
-                    cout << "used defence\n";
-                    // player.defend();
+                    cout << "You brace yourself, preparing for some of the incoming attack!\n";
+                    playerIsDefending = true;
                 }
                 else {
                     enemy.TakeDamage(20);
@@ -79,8 +80,16 @@
                 enemy.AddHealing(enemyMoveDamage);
                 cout << enemy.getName() << " uses " << enemyMoveName << " and heals " << enemyMoveDamage << " HP!\n";
             } else {
-                player.TakeDamage(enemyMoveDamage);
-                cout << enemy.getName() << " uses " << enemyMoveName << " and deals " << enemyMoveDamage << " damage!\n";
+                int incoming = enemyMoveDamage;
+                if (playerIsDefending) {
+                    int reduction = player.getDefence();// or fixed amount like 10
+                    incoming -= reduction;
+                    if (incoming < 0) incoming = 0;
+                    cout << "Defend reduced incoming damage by " << reduction << ".\n";
+                    playerIsDefending = false;
+                }
+                player.TakeDamage(incoming);
+                cout << enemy.getName() << " uses " << enemyMoveName << " and deals " << incoming << " damage!\n";
             }
     }
 

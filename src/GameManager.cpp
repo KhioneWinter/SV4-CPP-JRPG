@@ -71,7 +71,6 @@ void GameManagerClass::addStoryElement(string filename) {
     }
 }
 
-
 void GameManagerClass::roadChoice() {
         cout << "\nThe hallway before you reveals a classroom, take a break, or trek on?:\n";
         cout << "1. Take a quick break (Increase everyone's max health by 10)\n";
@@ -85,19 +84,18 @@ void GameManagerClass::roadChoice() {
             characters[0].AddHealing(200);
             characters[1].addMaxHealth(10);
             characters[1].AddHealing(200);
-            cout << "You take a break, you feel much better than before. Max health is now " << characters[0].getMaxHealth() << "for Sara and " << characters[1].getMaxHealth() << ".\n";
+            cout << "You take a break, you feel much better than before. Max health is now " << characters[0].getMaxHealth() << "for Brynhildur and " << characters[1].getMaxHealth() << " Sara.\n";
         } else if (choice == "2") {
             characters[0].addAttack(10);
             characters[1].addAttack(10);
-            cout << "\nYou keep going despite the adversities, you feel stronger than before. Attack power increased to " << characters[0].getAttack() << " for Sara and " << characters[1].getAttack()<< " for Brynhildur.\n \n";
+            cout << "\nYou keep going despite the adversities, you feel stronger than before. Attack power increased to " << characters[0].getAttack() << " for Brynhildur and " << characters[1].getAttack()<< " for Sara.\n \n";
         } else {
             cout << "Invalid input. You sluggishly continue, nothing has changed. The lights flicker.\n";
         } 
 
-
         cout << "You spot some items lying around!\n";
-        cout << "1. Grab a healing potion (Increase max healing by 1)\n";
-        cout << "2. Grab an energy drink! (Increase max special by 1)\n";
+        cout << "1. Grab a healing potion (Increase max healing amount by 1)\n";
+        cout << "2. Grab an energy drink! (Increase max special amount by 1)\n";
 
         string secondChoince;
         getline(cin, secondChoince);
@@ -109,7 +107,7 @@ void GameManagerClass::roadChoice() {
             characters[1].resetHealing();
             characters[0].resetSpecials();
             characters[1].resetSpecials();
-            cout << "You take a break, you feel much better than before. Max health is now " << characters[0].getMaxHealth() << "for Sara and " << characters[1].getMaxHealth() << ".\n";
+            cout << "You take a break, you feel much better than before. Max health is now " << characters[0].getMaxHealth() << "for Sara and " << characters[1].getMaxHealth() << " for Brynhildur.\n";
         } else if (secondChoince == "2") {
             characters[0].addToSpecial();
             characters[1].addToSpecial();
