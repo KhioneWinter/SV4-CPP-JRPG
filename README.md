@@ -4,47 +4,26 @@ Students:
 - Sara Elísabet Jónsdóttir
 ------------------------------------------
 
-**We implemented an AST using**
-- Parseing: Expression/term/factor
-- (We just did an assignment fairly similar using them)
-
-**How we understood the functionality, for this project**
-# Expression: 
-- Imidietly calls term
-- After that it checks if the character is a plus, 
-    if it is then they call term again and add then together into a node '+' with the terms on each side
-
-# Term:
-- Same logic as Expression except we check for '*'
-
-# Factor:
-- checks if the character is an integer, also valid for integer of bigger then 9 - (extra points? (o゜▽゜)o☆)
-- Then it also checks if the character is '(' as it they then have to call expression until the closing bracket comes along else its an error
-
-**The logic in descrete string logic**
-- So we are well aware this isint the perfect implementation of this exmple,
-    but its how we understood it while going through the project
-
-# S -> expr (curr char)
-# expr -> term | + term
-# term -> factor | * factor
-# factor -> int | (expr)
-
-# Tada!! ヾ(≧▽≦*)o
+**We implemented our game using inheretance**
 
 ------------------------------------------
 
-**What we implemented for our Syntax Tree** 
-# main program 50%
-- For first part (add imput which will be read and added to file)
-    Use : ./test_syntaxtree.out output.txt input.txt
-- For second part (use the tree added to output and get result)
-    Use : ./test_syntaxtree.out output.txt
+**What we implemented in our game!** 
+- main criteria 50%
+    - Added enemie with different moves to the game
+    - Have a playable main character
+    - Added a turn based battle cycle
+    - Added health, attack and defence to each character
+    - allow the user to take actions with standard in and out
+    - 
 
-- Extra functionality
-    - Whitespace insensitivity 5% ✅
-    - Error handling 10% (should get more i.m.o) 
-    - Extra operations 10% 
+- Extra spice! (Idk how much % these things give but here you go)
+    - have 3 enemies (each one of our teachers)
+    - Added ascii art of not only the teachers but also us into the game
+    - Added a title screen and a story segment (with ascii)
+    - Have two different playable characters, who each have different stats (Brynhildur and Sara, the best students in the world) 
+    - Added rest stops between battles to boost stats before next battle
+    - Added special attacks to each character
 
 -------------------------------------------
 
@@ -55,12 +34,12 @@ Students:
 make
 ```
 
-Then we have 1 executable test file:
+Then we have 1 executable  file:
 - `JRPG_test`
 
 # Run game:
 ```bash
-./JRPG_test.out
+./JRPG.out
 ```
 
 # Clean compiled files:
@@ -80,7 +59,6 @@ make clean
 - **Documentation**: `README.md`
 
 
-Well good luck going over the project! (*/ω＼*) (´▽`ʃ♡ƪ) 
-(you could always give us extra points, you know A for effert and all that <( _ _ )>)
+Hope you guys like the game! must be weird being a bad guy huh? （；´д｀）ゞ
 
 ---------------------------------------------------
