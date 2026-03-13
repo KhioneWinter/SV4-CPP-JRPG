@@ -10,7 +10,7 @@ class CharacterClass : public CreatureClass {
 
 public:
     // Assigning the player character set values
-    CharacterClass();
+    CharacterClass(string charN, int hp, int maxhp, int def, string wep, map<string, int> mov);
     bool canUseSpecial() const;
     void useSpecial(CreatureClass& enemy);
     void resetSpecials();

@@ -1,12 +1,26 @@
 #include "GameCycle.hpp"
 
 
-    void BattleCycleClass::cycle(CharacterClass& player, CreatureClass & enemy, int enemyIdx){
-        
+    void BattleCycleClass::cycle(CreatureClass& enemy, vector<CharacterClass>& characters, int enemyIdx){
+        cout << enemy.getName() << "is fast approching";
+        cout << "Enemy stats are: " << enemy.getName() << "\n"; // << ", Max health:" << enemy.getMaxHealth() << ", Defence" << enemy.getDefence() << ", Attack" << enemy.getAttack() <<
+        cout << "Which would you rather choose?\n";
+        cout << "1. " << characters[0].getName() << "\n"; // ", Max health:" << characters[0].getMaxHealth() << ", Defence" << characters[0].getDefence() << ", Attack" << characters[0].getAttack() 
+        cout << "2. " << characters[1].getName() << "\n";
+        cout << "\nWhich would you rather choose? ";
+        string chosenPlayer;
+        cin >> chosenPlayer;
+        while (chosenPlayer != "1" && chosenPlayer != "2") {
+            cout << "\nPlease choose 1 or 2: ";
+            cin >> chosenPlayer;
+        }
+        int chosenToPlay = stoi(chosenPlayer) -1;
+        CharacterClass& player = characters[chosenToPlay];
+
         while (player.getHealth() > 0 && enemy.getHealth() > 0) {
             system("clear");
             cout << "Battle with " << enemy.getName() << "! \n \n";
-            enemyPicture(enemyIdx);
+            enemyPicture(enemyIdx, chosenToPlay);
             healthStatus(player, enemy);
 
                 string userChoice;
@@ -105,9 +119,9 @@ void BattleCycleClass::healthStatus(CreatureClass& player, CreatureClass & enemy
     cout << "-------------------------------------------------------------------------------------------------------------------------\n \n";
 }
 
-void BattleCycleClass::enemyPicture(int enemyIdx) {
-    ifstream file1("txt-files/boss"+ to_string(enemyIdx) +".txt");
-    ifstream file2("txt-files/protag.txt");
+void BattleCycleClass::enemyPicture(int enemyIdx, int chosenPlayer) {
+    ifstream file1("txt-files/boss"+to_string(enemyIdx)+".txt");
+    ifstream file2("txt-files/protag"+to_string(chosenPlayer)+".txt");
 
     string boss;
     string protag;
