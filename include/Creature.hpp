@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
-#include <map>
 #include <iostream>
+#include <vector>
+#include <utility> 
 
-using std::string;
-using std::map;
+using namespace std;
 
 class CreatureClass {
     // Has all values that both player and enemy share
@@ -14,9 +14,9 @@ class CreatureClass {
         int maxhealth;
         int defence;
         string wepon;
-        map<string, int> moves;
+        vector<pair<string, int>> mov;
     public: 
-        CreatureClass(string charN, int hp, int maxhp, int def, string wep, map<string, int> mov);
+        CreatureClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string, int>> mov);
         void TakeDamage(int amount);
         void AddHealing(int healing);
         void setName(const string& newName);
@@ -28,5 +28,5 @@ class CreatureClass {
         // int getAttack() const;
         void defent(CreatureClass& player, int defense);
         void useSpecial(CreatureClass& enemy);
-
+        string specialName() const;
 };

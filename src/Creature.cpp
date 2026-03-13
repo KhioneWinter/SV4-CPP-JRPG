@@ -1,7 +1,7 @@
 #include "Creature.hpp"
 
-CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string wep, map<string, int> mov) 
-        : name(charN), health(hp), maxhealth(maxhp), defence(def), wepon(wep), moves(mov) {};
+CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string, int>> mov) 
+        : name(charN), health(hp), maxhealth(maxhp), defence(def), wepon(wep), mov(mov) {};
 
     void CreatureClass::setName(const string& newName) {
         name = newName;
@@ -35,6 +35,10 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
 
     int CreatureClass::getDefence() const {
         return defence;
+    }
+
+    string CreatureClass::specialName() const {
+        return mov[1].first;
     }
 
     // void CreatureClass::defend(CreatureClass& player, int defense) {

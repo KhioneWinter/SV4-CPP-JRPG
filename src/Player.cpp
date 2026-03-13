@@ -2,9 +2,8 @@
 
 using namespace std;
 
-// CharacterClass::CharacterClass() : CreatureClass("", 0, 0, 0, "", {}), position(0), specialUses(0), defense(0), attack(0) {}
 
-CharacterClass::CharacterClass(string charN, int hp, int maxhp, int def, string wep, map<string, int> mov)
+CharacterClass::CharacterClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string, int>> mov)
     : CreatureClass(charN, hp, maxhp, def, wep, mov){};
 
     bool CharacterClass::canUseSpecial() const {
@@ -31,17 +30,17 @@ CharacterClass::CharacterClass(string charN, int hp, int maxhp, int def, string 
         }
     }
 
-    int CharacterClass::getAttack() const {
-        return attack;
-    }
+    // int CharacterClass::getAttack() const {
+    //     return attack;
+    // }
 
-    int CharacterClass::getMaxHealth() const {
-        return maxhealth;
-    }
+    // int CharacterClass::getMaxHealth() const {
+    //     return maxhealth;
+    // }
 
-    void CharacterClass::defend(CreatureClass& player, int defense) {
-        cout << "You brace yourself, preparing for the incoming attack\n";
-    }
+    // void CharacterClass::defend(CreatureClass& player, int defense) {
+    //     cout << "You brace yourself, preparing for the incoming attack\n";
+    // }
 
     void CharacterClass::useSpecial(CreatureClass& enemy) {
         if (specialUses > 0) {

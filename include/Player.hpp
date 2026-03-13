@@ -10,12 +10,12 @@ class CharacterClass : public CreatureClass {
 
 public:
     // Assigning the player character set values
-    CharacterClass(string charN, int hp, int maxhp, int def, string wep, map<string, int> mov);
+    CharacterClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string, int>> mov);
     bool canUseSpecial() const;
     void useSpecial(CreatureClass& enemy);
     void resetSpecials();
     void defend(CreatureClass& player, int defense);
     void roadChoice();
-    void getAttack();
-    void getMaxHealth();
+    int getAttack();
+    int getMaxHealth();
 };
