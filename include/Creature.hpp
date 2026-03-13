@@ -43,9 +43,6 @@ class CreatureClass {
         int healingAmount() const;
         int healingTotal() const;
         pair<string,int> chooseMove() const;
-        void addToHeals();
-        void addToSpecial();
-        void resetHealing();
         int getHealingAmount();
         int getSpecialsAmount();
         int specialsAmount() const;
