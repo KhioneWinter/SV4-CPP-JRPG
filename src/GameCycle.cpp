@@ -61,11 +61,11 @@
                 else {
                     enemy.TakeDamage(20);
                 }
-            player.TakeDamage(10);
+            player.TakeDamage(20);
     }
 
     if (enemy.getHealth() == 0) {
-        player.AddHealing(100);
+        player.AddHealing(200);
         cout << "You win! \n";
     }
     else if (player.getHealth() == 0){

@@ -1,7 +1,7 @@
 #include "GameManager.hpp"
 
 GameManagerClass::GameManagerClass() {
-    enemies.push_back(EnemyClass("TEITUR", 120, 120, 10, "Code",{{"Ahahahahaaa", 10}, {"Æ, aftur??", 20}}));
+    enemies.push_back(EnemyClass("TEITUR", 120, 120, 100, "Code",{{"Ahahahahaaa", 10}, {"Æ, aftur??", 20}}));
     enemies.push_back(EnemyClass("KONRÁÐ", 150, 150, 10, "Code",{{"Wrahh", 10}, {"Skilurðu þetta?!", 20}}));
     enemies.push_back(EnemyClass("ATLI", 200, 200, 10, "Code",{{"UGhhhhh", 20}, {"Back in my day-", 30}}));
     characters.push_back(CharacterClass("BRYNHILDUR", 120, 120, 30, "Code",{{"ahahaha", 10}, {"Crunch hour!", 20}}));
@@ -29,11 +29,18 @@ void GameManagerClass::run() {
     cout << "\nPress enter to continue: ";
     cin.ignore(); 
     system("clear");
-    while (!PLAYERDEAD && currentEnemy < (int)enemies.size()-1) {
+    while (currentEnemy < (int)enemies.size()-1) {
         nextEnemy();
         BattleCycleClass BCC;
         BCC.cycle(enemies[currentEnemy], characters, currentEnemy);
-        if (enemies.size() == 2) {
+        if (PLAYERDEAD) {
+            system("clear");
+            addStoryElement("badEnd.txt");
+            cout << "\nPress enter to quit: ";
+            cin.ignore(); 
+            break;
+        }
+        if (currentEnemy == (int)enemies.size()-1) {
             addStoryElement("goodEnd.txt");
         }
         else {
@@ -42,9 +49,6 @@ void GameManagerClass::run() {
             cout << "\n";
             roadChoice();
         }
-    }
-    if (PLAYERDEAD) {
-        
     }
 }
 
