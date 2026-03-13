@@ -98,10 +98,11 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, vector<pa
 
     void CreatureClass::addToSpecial() {
         MaxSpecials++;
+        specialMoves[0].first++;
     }
-
     void CreatureClass::addToHeals() {
         MaxHealing++;
+        healingMoves[0].first++;
     }
 
     int CreatureClass::healingAmount() const {

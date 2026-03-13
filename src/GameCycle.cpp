@@ -33,7 +33,6 @@
                 cout << "- 3. Special: " + player.specialName() +" "<< player.specialsAmount() << "hp (" << player.getSpecialsAmount() << "/"<< player.specialsTotal() << ")\n";
                 cout << "- 4. Defend "<< player.getDefence() <<"hp\n \n";
 
-                cin.ignore();
                 getline(cin, userChoice);
                 string setChoice = "";
 

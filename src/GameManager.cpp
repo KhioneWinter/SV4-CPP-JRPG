@@ -42,6 +42,7 @@ void GameManagerClass::run() {
             break;
         }
         if (currentEnemy == (int)enemies.size()-1) {
+            system("clear");
             addStoryElement("goodEnd.txt");
         }
         else {
