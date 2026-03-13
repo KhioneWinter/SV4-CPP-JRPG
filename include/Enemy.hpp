@@ -6,6 +6,6 @@
 class EnemyClass : public CreatureClass {
     int position;
 public:
-    EnemyClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string, int>> mov);
+    EnemyClass(string charN, int hp, int maxhp, int def, vector<pair<int, int>> healingMoves, vector<pair<int, int>> specialsMoves, vector<pair<string, int>> mov);
     pair<string,int> chooseMove() const;
 };

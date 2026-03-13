@@ -1,7 +1,10 @@
 #include "Creature.hpp"
 
-CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, int heals, int specials, vector<pair<string, int>> mov) 
-        : name(charN), health(hp), maxhealth(maxhp), defence(def), healings(heals), specialUses(specials), mov(mov) {};
+CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, vector<pair<int,int>> healMov, vector<pair<int,int>> specMov, vector<pair<string, int>> mov) 
+        : name(charN), health(hp), maxhealth(maxhp), defence(def), healingMoves(healMov), specialMoves(specMov), mov(mov) {
+    MaxHealing = healingMoves[0].first;
+    MaxSpecials = specialMoves[0].first;
+};
 
     void CreatureClass::setName(const string& newName) {
         name = newName;
@@ -33,6 +36,14 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, int heals
         return maxhealth;
     }
 
+    int CreatureClass::getHealingAmount() {
+        return healingMoves[0].first;
+    }
+
+    int CreatureClass::getSpecialsAmount() {
+        return specialMoves[0].first;
+    }
+
     int CreatureClass::getDefence() const {
         return defence;
     }
@@ -46,25 +57,25 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, int heals
     // }
 
     bool CreatureClass::canUseSpecial() const {
-        return CreatureClass::specialUses > 0;
+        return specialMoves[0].first > 0;
     }
 
     void CreatureClass::useSpecial(CreatureClass& enemy) {
-        if (specialUses > 0) {
+        if (specialMoves[0].first > 0) {
             enemy.TakeDamage(30); // special damage
-            specialUses--;
-            cout << "Caffeine Crashout used! " << specialUses << " drink remaining.\n";
+            specialMoves[0].first--;
+            cout << "Caffeine Crashout used! " << specialMoves[0].first << " drinks remaining.\n";
         } else {
             cout << "No caffeinated drinks left!\n";
         }
     }
 
     int CreatureClass::specialsLeft() const {
-        return specialUses;
+        return specialMoves[0].first;
     }
 
     int CreatureClass::specialsTotal() const {
-        return specialsTot;
+        return MaxSpecials;
     }
 
     void CreatureClass::addMaxHealth(int amount) {
@@ -76,24 +87,28 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, int heals
     }
 
     void CreatureClass::addToSpecial() {
-        specialsTot++;
+        MaxSpecials++;
     }
 
     void CreatureClass::addToHeals() {
-        healingsTot++;
+        MaxHealing++;
     }
 
     int CreatureClass::healingAmount() const {
-        return healings;
+        return healingMoves[0].second;
+    }
+
+    int CreatureClass::specialsAmount() const {
+        return specialMoves[0].second;
     }
 
     int CreatureClass::healingTotal() const {
-        return healingsTot;
+        return MaxHealing;
     }
 
     // Simple returns, name, health and status
-    void CreatureClass::resetSpecials() { specialUses = specialsTot; }
-    void CreatureClass::resetHealing() {healings = healingsTot;}
+    void CreatureClass::resetSpecials() { specialMoves[0].first = MaxSpecials; }
+    void CreatureClass::resetHealing() {healingMoves[0].first = MaxHealing;}
     bool CreatureClass::isAlive() const {return health > 0;}
     string CreatureClass::getName() const {return name;}
     int CreatureClass::getHealth() const {return health;}
