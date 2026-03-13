@@ -5,5 +5,5 @@
 class EnemyClass : public CreatureClass {
     int position;
 public:
-    EnemyClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string, int>> mov);
+    EnemyClass(string charN, int hp, int maxhp, int def, int heals, int specials, vector<pair<string, int>> mov);
 };
