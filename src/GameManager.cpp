@@ -28,15 +28,23 @@ void GameManagerClass::run() {
 
     cout << "\nPress enter to continue: ";
     cin.ignore(); 
-
+    system("clear");
     while (!PLAYERDEAD && currentEnemy < (int)enemies.size()-1) {
         nextEnemy();
         BattleCycleClass BCC;
         BCC.cycle(enemies[currentEnemy], characters, currentEnemy);
-        system("clear");
-        addStoryElement("enemyBeaten.txt");
-        cout << "\n";
-        roadChoice();
+        if (enemies.size() == 2) {
+            addStoryElement("goodEnd.txt");
+        }
+        else {
+            system("clear");
+            addStoryElement("enemyBeaten.txt");
+            cout << "\n";
+            roadChoice();
+        }
+    }
+    if (PLAYERDEAD) {
+        
     }
 }
 
@@ -75,8 +83,10 @@ void GameManagerClass::roadChoice() {
         } else if (choice == "2") {
             characters[0].addAttack(10);
             characters[1].addAttack(10);
-            std::cout << "You keep going despite the adversities, you feel stronger than before. Attack power increased to " << characters[0].getAttack() << "for Sara and " << characters[1].getAttack()<< ".\n";
+            std::cout << "You keep going despite the adversities, you feel stronger than before. Attack power increased to " << characters[0].getAttack() << " for Sara and " << characters[1].getAttack()<< " for Brynhildur.\n";
         } else {
             std::cout << "Invalid input. You sluggishly continue, nothing has changed. The lights flicker.\n";
-        }
+        } 
+        cout << "\nPress enter to continue: ";
+        cin.ignore(); 
     }

@@ -59,6 +59,14 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
         }
     }
 
+    int CreatureClass::specialsLeft() const {
+        return CreatureClass::specialUses;
+    }
+
+    int CreatureClass::specialsTotal() const {
+        return 3;
+    } 
+
     void CreatureClass::addMaxHealth(int amount) {
         maxhealth += amount;
     }
@@ -67,9 +75,12 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
         mov[0].second += amount;
     }
 
-    pair<string,int> CreatureClass::chooseMove() const {
-        int index = rand() % mov.size();
-        return mov[index];
+    int CreatureClass::healingAmount() const {
+        return 2; // hardcoded for now
+    }
+
+    int CreatureClass::healingTotal() const {
+        return 3;
     }
 
     // Simple returns, name, health and status

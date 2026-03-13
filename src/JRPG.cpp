@@ -3,7 +3,7 @@
 #include <cctype>
 using namespace std;
 
-bool PLAYERDEAD = false;  // ✅ defined here once, extern in header
+bool PLAYERDEAD = false;
 
 int main() {
     GameManagerClass GMC;

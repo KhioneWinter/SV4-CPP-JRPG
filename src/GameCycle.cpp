@@ -2,12 +2,13 @@
 
 
     void BattleCycleClass::cycle(CreatureClass& enemy, vector<CharacterClass>& characters, int enemyIdx){
-        cout << enemy.getName() << "is fast approching";
-        cout << "Enemy stats are: " << enemy.getName() << ", Max health:" << enemy.getMaxHealth() << ", Defence" << enemy.getDefence() << ", Attack" << enemy.getAttack() << "\n"; 
+        system("clear");
+        cout << enemy.getName() << " is fast approching!\n";
+        cout << "Enemy stats are: Max health: " << enemy.getMaxHealth() << ", Defence: " << enemy.getDefence() << ", Attack: " << enemy.getAttack() << "\n \n"; 
         cout << "Which would you rather choose?\n";
-        cout << "1. " << characters[0].getName() << ", Max health:" << characters[0].getMaxHealth() << ", Defence" << characters[0].getDefence() << ", Attack" << characters[0].getAttack() << "\n"; //  
-        cout << "2. " << characters[1].getName() << ", Max health:" << characters[1].getMaxHealth() << ", Defence" << characters[1].getDefence() << ", Attack" << characters[1].getAttack() << "\n";
-        cout << "\nWhich would you rather choose? ";
+        cout << "1. " << characters[0].getName() << ", Max health: " << characters[0].getMaxHealth() << ", Defence: " << characters[0].getDefence() << ", Attack: " << characters[0].getAttack() << "\n"; //  
+        cout << "2. " << characters[1].getName() << ", Max health: " << characters[1].getMaxHealth() << ", Defence: " << characters[1].getDefence() << ", Attack " << characters[1].getAttack() << "\n";
+        cout << "\nChoice: ";
         string chosenPlayer;
         cin >> chosenPlayer;
         while (chosenPlayer != "1" && chosenPlayer != "2") {
@@ -25,9 +26,9 @@
 
                 string userChoice;
                 cout << "What would you like to do? \n";
-                cout << "- 1. Heal\n";
+                cout << "- 1. Heal ("<< player.healingAmount() << "/" << player.healingTotal()<< ")\n";
                 cout << "- 2. Attack\n";
-                cout << "- 3. " + player.specialName() +"\n";
+                cout << "- 3. " + player.specialName() +" (" << player.specialsLeft() << "/"<< player.specialsTotal() << ")\n";
                 cout << "- 4. Defend\n \n";
 
                 getline(cin, userChoice);
@@ -39,25 +40,24 @@
                     }
                 }
 
-                setChoice.erase(remove(setChoice.begin(), setChoice.end(), ' '), setChoice.end());
-
-                if (setChoice == "heal" || userChoice == "1") {
+                if (userChoice == "1") {
                     player.AddHealing(40);
                 }
-                else if (setChoice == "attack" || userChoice == "2"){
+                else if (userChoice == "2"){
                     enemy.TakeDamage(20);
                 }
-                else if (setChoice == "special" || userChoice == "3"|| userChoice == "caffeinecrashout") {
-                    // if (player.canUseSpecial()) {
-                    //     player.useSpecial(enemy);
-                    // } else {
+                else if (userChoice == "3") {
+                    if (player.canUseSpecial()) {
+                        player.useSpecial(enemy);
+                    } else {
                         cout << "You can't use Crashout right now! Attacking instead\n";
                         enemy.TakeDamage(20);
-                    // }
+                    }
                 }
-                // else if (setChoice == "defend" || userChoice == "4") {
-                //     player.defend(player, 30);
-                // }
+                else if (userChoice == "4") {
+                    
+                    // player.defend();
+                }
                 else {
                     enemy.TakeDamage(20);
                 }
