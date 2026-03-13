@@ -1,7 +1,7 @@
 #include "Creature.hpp"
 
-CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string,int>> mov)
-    : name(charN), health(hp), maxhealth(maxhp), defence(def), wepon(wep), specialUses(2), mov(mov) {}
+CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, int heals, int specials, vector<pair<string, int>> mov) 
+        : name(charN), health(hp), maxhealth(maxhp), defence(def), healings(heals), specialUses(specials), mov(mov) {};
 
     void CreatureClass::setName(const string& newName) {
         name = newName;
@@ -60,12 +60,12 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
     }
 
     int CreatureClass::specialsLeft() const {
-        return CreatureClass::specialUses;
+        return specialUses;
     }
 
     int CreatureClass::specialsTotal() const {
-        return 2;
-    } 
+        return specialsTot;
+    }
 
     void CreatureClass::addMaxHealth(int amount) {
         maxhealth += amount;
@@ -75,21 +75,25 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
         mov[0].second += amount;
     }
 
+    void CreatureClass::addToSpecial() {
+        specialsTot++;
+    }
+
+    void CreatureClass::addToHeals() {
+        healingsTot++;
+    }
+
     int CreatureClass::healingAmount() const {
-        return 2; // hardcoded for now
+        return healings;
     }
 
     int CreatureClass::healingTotal() const {
-        return 3;
-    }
-
-    pair<string,int> CreatureClass::chooseMove() const {
-        int index = rand() % mov.size();
-        return mov[index];
+        return healingsTot;
     }
 
     // Simple returns, name, health and status
-    void CreatureClass::resetSpecials() { specialUses = 2; }
+    void CreatureClass::resetSpecials() { specialUses = specialsTot; }
+    void CreatureClass::resetHealing() {healings = healingsTot;}
     bool CreatureClass::isAlive() const {return health > 0;}
     string CreatureClass::getName() const {return name;}
     int CreatureClass::getHealth() const {return health;}

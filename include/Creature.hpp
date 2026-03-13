@@ -13,12 +13,14 @@ class CreatureClass {
         int health;
         int maxhealth;
         int defence;
-        string wepon;
+        int healings;
+        int healingsTot = healings;
         int specialUses;
+        int specialsTot = specialUses;
         vector<pair<string, int>> mov;
         
     public: 
-        CreatureClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string, int>> mov);
+        CreatureClass(string charN, int hp, int maxhp, int def, int healings, int specialUses, vector<pair<string, int>> mov);
         void TakeDamage(int amount);
         void AddHealing(int healing);
         void setName(const string& newName);

@@ -72,26 +72,55 @@ void GameManagerClass::addStoryElement(string filename) {
 
 
 void GameManagerClass::roadChoice() {
-        std::cout << "\nThe hallway before you reveals a classroom, take a break, or trek on?:\n";
-        std::cout << "1. Take a quick break (Increase everyone's max health by 10)\n";
-        std::cout << "2. Trek on (Increase everyone's attack by 10)\n";
+        cout << "\nThe hallway before you reveals a classroom, take a break, or trek on?:\n";
+        cout << "1. Take a quick break (Increase everyone's max health by 10)\n";
+        cout << "2. Trek on (Increase everyone's attack by 10)\n";
 
-        std::string choice;
-        std::getline(std::cin, choice);
+        string choice;
+        getline(cin, choice);
 
         if (choice == "1") {
             characters[0].addMaxHealth(10);
             characters[0].AddHealing(200);
             characters[1].addMaxHealth(10);
             characters[1].AddHealing(200);
-            std::cout << "You take a break, you feel much better than before. Max health is now " << characters[0].getMaxHealth() << "for Sara and " << characters[1].getMaxHealth() << ".\n";
+            cout << "You take a break, you feel much better than before. Max health is now " << characters[0].getMaxHealth() << "for Sara and " << characters[1].getMaxHealth() << ".\n";
         } else if (choice == "2") {
             characters[0].addAttack(10);
             characters[1].addAttack(10);
-            std::cout << "You keep going despite the adversities, you feel stronger than before. Attack power increased to " << characters[0].getAttack() << " for Sara and " << characters[1].getAttack()<< " for Brynhildur.\n";
+            cout << "\nYou keep going despite the adversities, you feel stronger than before. Attack power increased to " << characters[0].getAttack() << " for Sara and " << characters[1].getAttack()<< " for Brynhildur.\n \n";
         } else {
-            std::cout << "Invalid input. You sluggishly continue, nothing has changed. The lights flicker.\n";
+            cout << "Invalid input. You sluggishly continue, nothing has changed. The lights flicker.\n";
         } 
+
+
+        cout << "You feel inspired!\n";
+        cout << "1. Compliment yourself (Increase max healing by 1)\n";
+        cout << "2. Dance! (Increase max special by 1)\n";
+
+        string secondChoince;
+        getline(cin, secondChoince);
+
+        if (secondChoince == "1") {
+            characters[0].addToHeals();
+            characters[1].addToHeals();
+            characters[0].resetHealing();
+            characters[1].resetHealing();
+            characters[0].resetSpecials();
+            characters[1].resetSpecials();
+            cout << "You take a break, you feel much better than before. Max health is now " << characters[0].getMaxHealth() << "for Sara and " << characters[1].getMaxHealth() << ".\n";
+        } else if (secondChoince == "2") {
+            characters[0].addToSpecial();
+            characters[1].addToSpecial();
+            characters[0].resetHealing();
+            characters[1].resetHealing();
+            characters[0].resetSpecials();
+            characters[1].resetSpecials();
+            cout << "\nYou keep going despite the adversities, you feel stronger than before. Attack power increased to " << characters[0].getAttack() << " for Sara and " << characters[1].getAttack()<< " for Brynhildur.\n \n";
+        } else {
+            cout << "Invalid input. You sluggishly continue, nothing has changed. The lights flicker.\n";
+        } 
+        
         cout << "\nPress enter to continue: ";
         cin.ignore(); 
     }
