@@ -25,9 +25,9 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
         // cout << name << " takes " << healing << "healing! \n";
     }
 
-    // int CreatureClass::getAttack() const {
-    //     return attack;
-    // }
+    int CreatureClass::getAttack() const {
+        return mov[0].second;
+    }
 
     int CreatureClass::getMaxHealth() const {
         return maxhealth;
@@ -45,17 +45,30 @@ CreatureClass::CreatureClass(string charN, int hp, int maxhp, int def, string we
     //     cout << "You brace yourself, preparing some of the incoming attack\n";
     // }
 
-    // void CreatureClass::useSpecial(CreatureClass& enemy) {
-    //     if (specialUses > 0) {
-    //         enemy.TakeDamage(30); // special damage
-    //         specialUses--;
-    //         cout << "Caffeine Crashout used! " << specialUses << " drinks remaining.\n";
-    //     } else {
-    //         cout << "No caffeinated drinks left!\n";
-    //     }
-    // }
+    bool CreatureClass::canUseSpecial() const {
+        return CreatureClass::specialUses > 0;
+    }
+
+    void CreatureClass::useSpecial(CreatureClass& enemy) {
+        if (specialUses > 0) {
+            enemy.TakeDamage(30); // special damage
+            specialUses--;
+            cout << "Caffeine Crashout used! " << specialUses << " drinks remaining.\n";
+        } else {
+            cout << "No caffeinated drinks left!\n";
+        }
+    }
+
+    void CreatureClass::addMaxHealth(int amount) {
+        maxhealth += amount;
+    }
+
+    void CreatureClass::addAttack(int amount) {
+        mov[0].second += amount;
+    }
 
     // Simple returns, name, health and status
+    void CreatureClass::resetSpecials() { specialUses = 3; }
     bool CreatureClass::isAlive() const {return health > 0;}
     string CreatureClass::getName() const {return name;}
     int CreatureClass::getHealth() const {return health;}

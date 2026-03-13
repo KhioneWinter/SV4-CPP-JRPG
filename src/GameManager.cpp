@@ -29,14 +29,14 @@ void GameManagerClass::run() {
     cout << "\nPress enter to continue: ";
     cin.ignore(); 
 
-    while (!PLAYERDEAD && currentEnemy < (int)enemies.size()-3) {
+    while (!PLAYERDEAD && currentEnemy < (int)enemies.size()-1) {
         nextEnemy();
         BattleCycleClass BCC;
         BCC.cycle(enemies[currentEnemy], characters, currentEnemy);
         system("clear");
         addStoryElement("enemyBeaten.txt");
-        // CharacterClass PlayerChoice;
-        // PlayerChoice.roadChoice();
+        cout << "\n";
+        roadChoice();
     }
 }
 
@@ -56,3 +56,27 @@ void GameManagerClass::addStoryElement(string filename) {
         cerr << "Error with file opening" << endl;
     }
 }
+
+
+void GameManagerClass::roadChoice() {
+        std::cout << "\nThe hallway before you reveals a classroom, take a break, or trek on?:\n";
+        std::cout << "1. Take a quick break (Increase everyone's max health by 10)\n";
+        std::cout << "2. Trek on (Increase everyone's attack by 10)\n";
+
+        std::string choice;
+        std::getline(std::cin, choice);
+
+        if (choice == "1") {
+            characters[0].addMaxHealth(10);
+            characters[0].AddHealing(200);
+            characters[1].addMaxHealth(10);
+            characters[1].AddHealing(200);
+            std::cout << "You take a break, you feel much better than before. Max health is now " << characters[0].getMaxHealth() << "for Sara and " << characters[1].getMaxHealth() << ".\n";
+        } else if (choice == "2") {
+            characters[0].addAttack(10);
+            characters[1].addAttack(10);
+            std::cout << "You keep going despite the adversities, you feel stronger than before. Attack power increased to " << characters[0].getAttack() << "for Sara and " << characters[1].getAttack()<< ".\n";
+        } else {
+            std::cout << "Invalid input. You sluggishly continue, nothing has changed. The lights flicker.\n";
+        } 
+    }

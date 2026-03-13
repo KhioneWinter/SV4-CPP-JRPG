@@ -3,10 +3,10 @@
 
     void BattleCycleClass::cycle(CreatureClass& enemy, vector<CharacterClass>& characters, int enemyIdx){
         cout << enemy.getName() << "is fast approching";
-        cout << "Enemy stats are: " << enemy.getName() << "\n"; // << ", Max health:" << enemy.getMaxHealth() << ", Defence" << enemy.getDefence() << ", Attack" << enemy.getAttack() <<
+        cout << "Enemy stats are: " << enemy.getName() << ", Max health:" << enemy.getMaxHealth() << ", Defence" << enemy.getDefence() << ", Attack" << enemy.getAttack() << "\n"; 
         cout << "Which would you rather choose?\n";
-        cout << "1. " << characters[0].getName() << "\n"; // ", Max health:" << characters[0].getMaxHealth() << ", Defence" << characters[0].getDefence() << ", Attack" << characters[0].getAttack() 
-        cout << "2. " << characters[1].getName() << "\n";
+        cout << "1. " << characters[0].getName() << ", Max health:" << characters[0].getMaxHealth() << ", Defence" << characters[0].getDefence() << ", Attack" << characters[0].getAttack() << "\n"; //  
+        cout << "2. " << characters[1].getName() << ", Max health:" << characters[1].getMaxHealth() << ", Defence" << characters[1].getDefence() << ", Attack" << characters[1].getAttack() << "\n";
         cout << "\nWhich would you rather choose? ";
         string chosenPlayer;
         cin >> chosenPlayer;
@@ -137,3 +137,4 @@ void BattleCycleClass::enemyPicture(int enemyIdx, int chosenPlayer) {
         cerr << "Error with file opening" << endl;
     }
 }
+

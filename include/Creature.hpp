@@ -14,6 +14,7 @@ class CreatureClass {
         int maxhealth;
         int defence;
         string wepon;
+        int specialUses;
         vector<pair<string, int>> mov;
     public: 
         CreatureClass(string charN, int hp, int maxhp, int def, string wep, vector<pair<string, int>> mov);
@@ -25,8 +26,12 @@ class CreatureClass {
         int getHealth() const;
         int getMaxHealth() const;
         int getDefence() const;
-        // int getAttack() const;
+        int getAttack() const;
         void defent(CreatureClass& player, int defense);
         void useSpecial(CreatureClass& enemy);
         string specialName() const;
+        bool canUseSpecial() const;
+        void resetSpecials();
+        void addMaxHealth(int amount);
+        void addAttack(int amount);
 };

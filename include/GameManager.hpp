@@ -19,4 +19,5 @@ public:
     int currEnemy();
     void run();
     void addStoryElement(string filename);
+    void roadChoice();
 };
